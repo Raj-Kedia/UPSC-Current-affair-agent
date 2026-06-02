@@ -1,0 +1,321 @@
+[30-05-2026 10:26:38.61] Starting Daily UPSC Agent Run 
+d:\project\agent\src\analyzer.py:4: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+2026-05-30 10:26:46,254 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-05-30 10:26:46,264 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-05-30 10:26:46,264 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-05-30 10:26:47,421 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-05-30 10:26:47,422 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-05-30 10:26:47,880 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-05-30 10:26:47,881 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-05-30 10:26:48,230 [INFO] upsc-agent: Retrieved 11 recent articles from 'The Hindu Opinion'
+2026-05-30 10:26:48,231 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-05-30 10:26:48,532 [INFO] upsc-agent: Retrieved 22 recent articles from 'The Hindu Business'
+2026-05-30 10:26:48,533 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-05-30 10:26:48,886 [INFO] upsc-agent: Retrieved 35 recent articles from 'The Hindu Sci-Tech'
+2026-05-30 10:26:48,887 [INFO] upsc-agent: Total deduplicated news articles fetched: 124
+2026-05-30 10:26:48,887 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-05-30 10:26:48,887 [INFO] upsc-agent: Filtering 124 articles for UPSC relevance...
+2026-05-30 10:26:49,663 [ERROR] upsc-agent: Error in UPSC filtering stage: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:49,716 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-05-30 10:26:49,716 [INFO] upsc-agent: Analyzing article: India’s 2022 forensic law marks shift from colonial-era framework, says National Law University VC
+2026-05-30 10:26:49,897 [ERROR] upsc-agent: Error analyzing article 'India’s 2022 forensic law marks shift from colonial-era framework, says National Law University VC': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:49,897 [INFO] upsc-agent: Analyzing article: Switzerland to collaborate with J&K on sustainable tourism, vocational training
+2026-05-30 10:26:50,177 [ERROR] upsc-agent: Error analyzing article 'Switzerland to collaborate with J&K on sustainable tourism, vocational training': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:50,178 [INFO] upsc-agent: Analyzing article: Indian court ruling on Google keyword ads could reshape online advertising
+2026-05-30 10:26:50,353 [ERROR] upsc-agent: Error analyzing article 'Indian court ruling on Google keyword ads could reshape online advertising': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:50,354 [INFO] upsc-agent: Analyzing article: Trinamool criticises 11-page Annapurna Bhandar form filling process
+2026-05-30 10:26:50,570 [ERROR] upsc-agent: Error analyzing article 'Trinamool criticises 11-page Annapurna Bhandar form filling process': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:50,571 [INFO] upsc-agent: Analyzing article: Himachal panchayat elections: Over 19% polling recorded till 9 a.m. in final phase
+2026-05-30 10:26:50,762 [ERROR] upsc-agent: Error analyzing article 'Himachal panchayat elections: Over 19% polling recorded till 9 a.m. in final phase': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:50,762 [INFO] upsc-agent: Analyzing article: Senior CPI(M) leader T.P. Dasan passes away
+2026-05-30 10:26:50,953 [ERROR] upsc-agent: Error analyzing article 'Senior CPI(M) leader T.P. Dasan passes away': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:50,953 [INFO] upsc-agent: Analyzing article: K.P. Dhanapalan, senior Congress leader and former Kerala MP, passes away
+2026-05-30 10:26:51,161 [ERROR] upsc-agent: Error analyzing article 'K.P. Dhanapalan, senior Congress leader and former Kerala MP, passes away': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:51,161 [INFO] upsc-agent: Analyzing article: 89 additional CAPF units, advanced surveillance, real-time monitoring for safe Amarnath yatra this year
+2026-05-30 10:26:51,347 [ERROR] upsc-agent: Error analyzing article '89 additional CAPF units, advanced surveillance, real-time monitoring for safe Amarnath yatra this year': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:51,347 [INFO] upsc-agent: Analysis complete. Generated 8 study cards.
+2026-05-30 10:26:51,347 [INFO] upsc-agent: Step 3: Compiling HTML newsletter...
+2026-05-30 10:26:51,348 [INFO] upsc-agent: Step 4: Sending email newsletter...
+2026-05-30 10:26:51,348 [INFO] upsc-agent: Preparing to send email to rajramkola786@gmail.com via smtp.gmail.com:587...
+2026-05-30 10:26:56,458 [INFO] upsc-agent: Email sent successfully!
+2026-05-30 10:26:56,459 [INFO] upsc-agent: Daily agent workflow completed successfully.
+[30-05-2026 10:26:58.82] Daily UPSC Agent Run Completed 
+[31-05-2026 10:15:35.11] Starting Daily UPSC Agent Run 
+d:\project\agent\src\analyzer.py:5: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+2026-05-31 10:15:37,754 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-05-31 10:15:37,761 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-05-31 10:15:37,761 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-05-31 10:15:38,002 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-05-31 10:15:38,002 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-05-31 10:15:38,134 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-05-31 10:15:38,134 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-05-31 10:15:38,264 [INFO] upsc-agent: Retrieved 7 recent articles from 'The Hindu Opinion'
+2026-05-31 10:15:38,265 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-05-31 10:15:38,377 [INFO] upsc-agent: Retrieved 14 recent articles from 'The Hindu Business'
+2026-05-31 10:15:38,377 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-05-31 10:15:38,509 [INFO] upsc-agent: Retrieved 32 recent articles from 'The Hindu Sci-Tech'
+2026-05-31 10:15:38,510 [INFO] upsc-agent: Total deduplicated news articles fetched: 108
+2026-05-31 10:15:38,510 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-05-31 10:15:38,510 [INFO] upsc-agent: Filtering 108 articles for UPSC relevance...
+2026-05-31 10:16:04,164 [INFO] upsc-agent: Gemini selected 38 / 108 relevant articles.
+2026-05-31 10:16:04,266 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-05-31 10:16:04,266 [INFO] upsc-agent: Analyzing article: General Subramani takes charge as new Chief of Defence Staff
+2026-05-31 10:16:21,386 [INFO] upsc-agent: Analyzing article: Onion farmers seek \u20b910,000 crore revival package, stable export policy from Centre
+2026-05-31 10:16:39,313 [INFO] upsc-agent: Analyzing article: Second-life surgery | Surrendered Maoists in Maharashtra reverse vasectomies for family life
+2026-05-31 10:16:56,302 [INFO] upsc-agent: Analyzing article: News in Frames | Bringing water to a scorching desert
+2026-05-31 10:17:09,861 [INFO] upsc-agent: Analyzing article: Delhi High Court’s pathbreaking ruling on Google keyword advertising | Explained
+2026-05-31 10:17:24,612 [INFO] upsc-agent: Analyzing article: Kochi sailor who endured Equatorial Guinea’s detention feels relieved with international tribunal’s verdict
+2026-05-31 10:17:41,235 [INFO] upsc-agent: Analyzing article: Audit of fundamental rights’ effectiveness could yield ‘uncomfortable’ findings:  J. Chelameswar
+^C[01-06-2026 10:16:47.65] Starting Daily UPSC Agent Run 
+^C[02-06-2026 10:14:37.25] Starting Daily UPSC Agent Run 
+d:\project\agent\src\analyzer.py:6: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+2026-06-02 10:14:44,715 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-06-02 10:14:44,727 [INFO] upsc-agent: Fetching recent news articles...
+2026-06-02 10:14:44,728 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1
+2026-06-02 10:14:46,860 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-06-02 10:14:46,860 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-06-02 10:14:47,340 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-06-02 10:14:47,342 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-06-02 10:14:47,759 [INFO] upsc-agent: Retrieved 11 recent articles from 'The Hindu Opinion'
+2026-06-02 10:14:47,760 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-06-02 10:14:48,119 [INFO] upsc-agent: Retrieved 26 recent articles from 'The Hindu Business'
+2026-06-02 10:14:48,120 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-06-02 10:14:48,540 [INFO] upsc-agent: Retrieved 28 recent articles from 'The Hindu Sci-Tech'
+2026-06-02 10:14:48,541 [INFO] upsc-agent: Total deduplicated news articles fetched: 117
+2026-06-02 10:14:48,541 [INFO] upsc-agent: Fetching verification and curation sources...
+2026-06-02 10:14:48,541 [INFO] upsc-agent: Fetching Insights on India main feed from: https://www.insightsonindia.com/feed/
+2026-06-02 10:14:49,164 [WARNING] upsc-agent: No recent Insights Daily Current Affairs post found in feed.
+2026-06-02 10:14:49,166 [INFO] upsc-agent: Fetching YouTube feed 'StudyIQ UPSC CSE' from: https://www.youtube.com/feeds/videos.xml?channel_id=UCl9HsnUFaRBrkql1Gly6ICQ
+2026-06-02 10:14:50,096 [ERROR] upsc-agent: Failed to fetch YouTube feed for StudyIQ UPSC CSE: Status 500
+2026-06-02 10:14:50,098 [INFO] upsc-agent: Fetching YouTube feed 'PW OnlyIAS' from: https://www.youtube.com/feeds/videos.xml?channel_id=UC4qbM7cBX0xxNbCY2D7rj4A
+2026-06-02 10:14:50,823 [ERROR] upsc-agent: Failed to fetch YouTube feed for PW OnlyIAS: Status 500
+2026-06-02 10:14:50,824 [INFO] upsc-agent: Verification data summary: 0 Insights topics, 0 YouTube topics.
+2026-06-02 10:14:50,824 [INFO] upsc-agent: Processing and analyzing all articles via Gemini...
+2026-06-02 10:14:50,825 [INFO] upsc-agent: No verification data provided. Running standard UPSC news filtering.
+2026-06-02 10:14:50,825 [INFO] upsc-agent: Filtering 117 articles for UPSC relevance...
+2026-06-02 10:15:40,478 [INFO] upsc-agent: Gemini selected 75 / 117 relevant articles.
+2026-06-02 10:15:40,898 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-06-02 10:15:40,899 [INFO] upsc-agent: Analyzing article: 388 cells on 2 floors, this Kerala cemetery beats space crunch
+2026-06-02 10:15:41,400 [ERROR] upsc-agent: Error analyzing article '388 cells on 2 floors, this Kerala cemetery beats space crunch': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 21.382623073s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 21
+}
+]
+2026-06-02 10:15:43,401 [INFO] upsc-agent: Analyzing article: Deepak Cables: ED seizes \u20b91.27 crore cash and gold, freezes \u20b918 crore in \u20b9899-crore bank fraud case in Bengaluru
+2026-06-02 10:15:43,843 [ERROR] upsc-agent: Error analyzing article 'Deepak Cables: ED seizes \u20b91.27 crore cash and gold, freezes \u20b918 crore in \u20b9899-crore bank fraud case in Bengaluru': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 18.880690183s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 18
+}
+]
+2026-06-02 10:15:45,844 [INFO] upsc-agent: Analyzing article: After partial collapse, push to restore Radhakrishnan heritage site in Mysuru
+2026-06-02 10:15:46,450 [ERROR] upsc-agent: Error analyzing article 'After partial collapse, push to restore Radhakrishnan heritage site in Mysuru': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 16.445564867s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 16
+}
+]
+2026-06-02 10:15:48,452 [INFO] upsc-agent: Analyzing article: Notification for polls to fill four Rajya Sabha seats in Karnataka issued
+2026-06-02 10:15:48,886 [ERROR] upsc-agent: Error analyzing article 'Notification for polls to fill four Rajya Sabha seats in Karnataka issued': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 13.865772859s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 13
+}
+]
+2026-06-02 10:15:50,886 [INFO] upsc-agent: Analyzing article: Telangana statehood Day: Committed to supporting State’s growth trajectory, says PM Modi
+2026-06-02 10:15:51,537 [ERROR] upsc-agent: Error analyzing article 'Telangana statehood Day: Committed to supporting State’s growth trajectory, says PM Modi': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 11.394981033s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 11
+}
+]
+2026-06-02 10:15:53,538 [INFO] upsc-agent: Analyzing article: Vizag data centre is a major challenge
+2026-06-02 10:15:53,998 [ERROR] upsc-agent: Error analyzing article 'Vizag data centre is a major challenge': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 8.779534467s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 8
+}
+]
+2026-06-02 10:15:55,999 [INFO] upsc-agent: Analyzing article: Undertrial prisoners entitled to be treated at private hospitals of their choice: Madras High Court
+2026-06-02 10:15:56,416 [ERROR] upsc-agent: Error analyzing article 'Undertrial prisoners entitled to be treated at private hospitals of their choice: Madras High Court': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 6.312812012s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 6
+}
+]
+2026-06-02 10:15:58,417 [INFO] upsc-agent: Analyzing article: Prisons in India continue to be overcrowded by undertrials | Data
+2026-06-02 10:15:58,836 [ERROR] upsc-agent: Error analyzing article 'Prisons in India continue to be overcrowded by undertrials | Data': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 3.889530386s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 3
+}
+]
+2026-06-02 10:15:58,836 [INFO] upsc-agent: Analysis complete. Generated 8 study cards.
+2026-06-02 10:15:58,924 [INFO] upsc-agent: Saved 8 generated study cards to cache: d:\project\agent\data\brief_2026-06-02.json
+2026-06-02 10:15:58,924 [INFO] upsc-agent: Step 3: Compiling HTML newsletter...
+2026-06-02 10:15:58,925 [INFO] upsc-agent: Step 4: Sending email newsletter...
+2026-06-02 10:15:58,925 [INFO] upsc-agent: Preparing to send email to rajramkola786@gmail.com via smtp.gmail.com:587 (attempt 1/3)...
+2026-06-02 10:16:04,028 [INFO] upsc-agent: Email sent successfully!
+2026-06-02 10:16:04,028 [INFO] upsc-agent: Daily agent workflow completed successfully.
+[02-06-2026 10:16:06.33] Daily UPSC Agent Run Completed 

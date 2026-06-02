@@ -1,0 +1,2668 @@
+2026-05-28 23:23:52,357 [WARNING] upsc-agent: GEMINI_API_KEY environment variable is not set. API calls will fail.
+2026-05-28 23:23:52,406 [WARNING] upsc-agent: .env file not found!
+2026-05-28 23:23:52,406 [INFO] upsc-agent: Copying template from .env.example to .env
+2026-05-28 23:23:52,407 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-05-28 23:23:52,407 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-05-28 23:23:52,407 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-05-28 23:23:52,693 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-05-28 23:23:52,693 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-05-28 23:23:52,886 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-05-28 23:23:52,887 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-05-28 23:23:53,017 [INFO] upsc-agent: Retrieved 9 recent articles from 'The Hindu Opinion'
+2026-05-28 23:23:53,017 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-05-28 23:23:53,132 [INFO] upsc-agent: Retrieved 14 recent articles from 'The Hindu Business'
+2026-05-28 23:23:53,132 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-05-28 23:23:53,280 [INFO] upsc-agent: Retrieved 30 recent articles from 'The Hindu Sci-Tech'
+2026-05-28 23:23:53,281 [INFO] upsc-agent: Total deduplicated news articles fetched: 110
+2026-05-28 23:23:53,281 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-05-28 23:23:53,281 [WARNING] upsc-agent: GEMINI_API_KEY is not set. Running in MOCK MODE and selecting first 5 articles.
+2026-05-28 23:23:53,283 [INFO] upsc-agent: Generating UPSC study cards for 5 articles...
+2026-05-28 23:23:53,297 [INFO] upsc-agent: Analysis complete. Generated 5 study cards.
+2026-05-28 23:23:53,297 [INFO] upsc-agent: Step 3: Compiling HTML newsletter...
+2026-05-28 23:23:53,297 [INFO] upsc-agent: Dry-run enabled. Saving HTML newsletter to: D:\project\agent\data\test_output.html
+2026-05-29 18:17:13,942 [INFO] upsc-agent: Preparing to send email to rajramkola796@gmail.com via smtp.gmail.com:587...
+2026-05-29 18:17:17,020 [ERROR] upsc-agent: Failed to send email: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-36bbe214d19sm899922a91.14 - gsmtp')
+2026-05-29 18:50:04,637 [INFO] upsc-agent: Preparing to send email to rajramkola796@gmail.com via smtp.gmail.com:587...
+2026-05-29 18:50:07,959 [ERROR] upsc-agent: Failed to send email: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-36bbfc90570sm2365355a91.4 - gsmtp')
+2026-05-29 18:51:50,298 [INFO] upsc-agent: Preparing to send email to rajramkola796@gmail.com via smtp.gmail.com:587...
+2026-05-29 18:51:55,442 [INFO] upsc-agent: Email sent successfully!
+2026-05-29 18:52:37,624 [INFO] upsc-agent: Preparing to send email to rajramkola786@gmail.com via smtp.gmail.com:587...
+2026-05-29 18:52:42,305 [INFO] upsc-agent: Email sent successfully!
+2026-05-29 18:57:06,140 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-05-29 18:57:06,140 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-05-29 18:57:06,140 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-05-29 18:57:07,364 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-05-29 18:57:07,364 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-05-29 18:57:07,924 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-05-29 18:57:07,924 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-05-29 18:57:08,270 [INFO] upsc-agent: Retrieved 9 recent articles from 'The Hindu Opinion'
+2026-05-29 18:57:08,271 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-05-29 18:57:08,613 [INFO] upsc-agent: Retrieved 23 recent articles from 'The Hindu Business'
+2026-05-29 18:57:08,711 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-05-29 18:57:09,136 [INFO] upsc-agent: Retrieved 32 recent articles from 'The Hindu Sci-Tech'
+2026-05-29 18:57:09,136 [INFO] upsc-agent: Total deduplicated news articles fetched: 118
+2026-05-29 18:57:09,136 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-05-29 18:57:09,137 [INFO] upsc-agent: Filtering 118 articles for UPSC relevance...
+2026-05-29 18:57:09,966 [ERROR] upsc-agent: Error in UPSC filtering stage: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-29 18:57:09,997 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-05-29 18:57:09,997 [INFO] upsc-agent: Analyzing article: Row over Kerala Kalamandalam Chancellor post amid cash crunch
+2026-05-29 18:57:10,259 [ERROR] upsc-agent: Error analyzing article 'Row over Kerala Kalamandalam Chancellor post amid cash crunch': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-29 18:57:10,259 [INFO] upsc-agent: Analyzing article: Six shot dead near Chadchan over property dispute
+2026-05-29 18:57:10,493 [ERROR] upsc-agent: Error analyzing article 'Six shot dead near Chadchan over property dispute': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-29 18:57:10,493 [INFO] upsc-agent: Analyzing article: Truck driver from West Bengal transporting rice to Ukhrul killed in Manipur ambush
+2026-05-29 18:57:10,698 [ERROR] upsc-agent: Error analyzing article 'Truck driver from West Bengal transporting rice to Ukhrul killed in Manipur ambush': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-29 18:57:10,698 [INFO] upsc-agent: Analyzing article: Operation Dandayan launched in Anantapur district to curb crimes against women, children: SP
+2026-05-29 18:57:10,895 [ERROR] upsc-agent: Error analyzing article 'Operation Dandayan launched in Anantapur district to curb crimes against women, children: SP': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-29 18:57:10,896 [INFO] upsc-agent: Analyzing article: After Karnataka, Congress signals it has the appetite to settle Chief Ministerial feuds
+2026-05-29 18:57:11,108 [ERROR] upsc-agent: Error analyzing article 'After Karnataka, Congress signals it has the appetite to settle Chief Ministerial feuds': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-29 18:57:11,108 [INFO] upsc-agent: Analyzing article: TTD effects changes in Srivani darshan tickets quota
+2026-05-29 18:57:11,331 [ERROR] upsc-agent: Error analyzing article 'TTD effects changes in Srivani darshan tickets quota': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-29 18:57:11,332 [INFO] upsc-agent: Analyzing article: CBSE portal for re-evaluation of Class 12 answer papers to be operational from June 1
+2026-05-29 18:57:11,743 [ERROR] upsc-agent: Error analyzing article 'CBSE portal for re-evaluation of Class 12 answer papers to be operational from June 1': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-29 18:57:11,744 [INFO] upsc-agent: Analyzing article: KSPCA member seeks action against ‘nail mafia’
+2026-05-29 18:57:11,913 [ERROR] upsc-agent: Error analyzing article 'KSPCA member seeks action against ‘nail mafia’': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-29 18:57:11,914 [INFO] upsc-agent: Analysis complete. Generated 8 study cards.
+2026-05-29 18:57:11,914 [INFO] upsc-agent: Step 3: Compiling HTML newsletter...
+2026-05-29 18:57:11,915 [INFO] upsc-agent: Dry-run enabled. Saving HTML newsletter to: D:\project\agent\data\test_output.html
+2026-05-30 10:26:46,254 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-05-30 10:26:46,264 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-05-30 10:26:46,264 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-05-30 10:26:47,421 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-05-30 10:26:47,422 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-05-30 10:26:47,880 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-05-30 10:26:47,881 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-05-30 10:26:48,230 [INFO] upsc-agent: Retrieved 11 recent articles from 'The Hindu Opinion'
+2026-05-30 10:26:48,231 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-05-30 10:26:48,532 [INFO] upsc-agent: Retrieved 22 recent articles from 'The Hindu Business'
+2026-05-30 10:26:48,533 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-05-30 10:26:48,886 [INFO] upsc-agent: Retrieved 35 recent articles from 'The Hindu Sci-Tech'
+2026-05-30 10:26:48,887 [INFO] upsc-agent: Total deduplicated news articles fetched: 124
+2026-05-30 10:26:48,887 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-05-30 10:26:48,887 [INFO] upsc-agent: Filtering 124 articles for UPSC relevance...
+2026-05-30 10:26:49,663 [ERROR] upsc-agent: Error in UPSC filtering stage: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:49,716 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-05-30 10:26:49,716 [INFO] upsc-agent: Analyzing article: India’s 2022 forensic law marks shift from colonial-era framework, says National Law University VC
+2026-05-30 10:26:49,897 [ERROR] upsc-agent: Error analyzing article 'India’s 2022 forensic law marks shift from colonial-era framework, says National Law University VC': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:49,897 [INFO] upsc-agent: Analyzing article: Switzerland to collaborate with J&K on sustainable tourism, vocational training
+2026-05-30 10:26:50,177 [ERROR] upsc-agent: Error analyzing article 'Switzerland to collaborate with J&K on sustainable tourism, vocational training': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:50,178 [INFO] upsc-agent: Analyzing article: Indian court ruling on Google keyword ads could reshape online advertising
+2026-05-30 10:26:50,353 [ERROR] upsc-agent: Error analyzing article 'Indian court ruling on Google keyword ads could reshape online advertising': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:50,354 [INFO] upsc-agent: Analyzing article: Trinamool criticises 11-page Annapurna Bhandar form filling process
+2026-05-30 10:26:50,570 [ERROR] upsc-agent: Error analyzing article 'Trinamool criticises 11-page Annapurna Bhandar form filling process': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:50,571 [INFO] upsc-agent: Analyzing article: Himachal panchayat elections: Over 19% polling recorded till 9 a.m. in final phase
+2026-05-30 10:26:50,762 [ERROR] upsc-agent: Error analyzing article 'Himachal panchayat elections: Over 19% polling recorded till 9 a.m. in final phase': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:50,762 [INFO] upsc-agent: Analyzing article: Senior CPI(M) leader T.P. Dasan passes away
+2026-05-30 10:26:50,953 [ERROR] upsc-agent: Error analyzing article 'Senior CPI(M) leader T.P. Dasan passes away': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:50,953 [INFO] upsc-agent: Analyzing article: K.P. Dhanapalan, senior Congress leader and former Kerala MP, passes away
+2026-05-30 10:26:51,161 [ERROR] upsc-agent: Error analyzing article 'K.P. Dhanapalan, senior Congress leader and former Kerala MP, passes away': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:51,161 [INFO] upsc-agent: Analyzing article: 89 additional CAPF units, advanced surveillance, real-time monitoring for safe Amarnath yatra this year
+2026-05-30 10:26:51,347 [ERROR] upsc-agent: Error analyzing article '89 additional CAPF units, advanced surveillance, real-time monitoring for safe Amarnath yatra this year': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-30 10:26:51,347 [INFO] upsc-agent: Analysis complete. Generated 8 study cards.
+2026-05-30 10:26:51,347 [INFO] upsc-agent: Step 3: Compiling HTML newsletter...
+2026-05-30 10:26:51,348 [INFO] upsc-agent: Step 4: Sending email newsletter...
+2026-05-30 10:26:51,348 [INFO] upsc-agent: Preparing to send email to rajramkola786@gmail.com via smtp.gmail.com:587...
+2026-05-30 10:26:56,458 [INFO] upsc-agent: Email sent successfully!
+2026-05-30 10:26:56,459 [INFO] upsc-agent: Daily agent workflow completed successfully.
+2026-05-30 10:33:32,346 [INFO] upsc-agent: Filtering 1 articles for UPSC relevance...
+2026-05-30 10:33:36,416 [INFO] upsc-agent: Gemini selected 1 / 1 relevant articles.
+2026-05-30 10:33:36,416 [INFO] upsc-agent: Analyzing article: India’s 2022 forensic law marks shift from colonial-era framework, says National Law University VC
+2026-05-30 10:34:37,719 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-05-30 10:34:37,719 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-05-30 10:34:37,719 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-05-30 10:34:38,701 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-05-30 10:34:38,701 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-05-30 10:34:39,076 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-05-30 10:34:39,078 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-05-30 10:34:39,383 [INFO] upsc-agent: Retrieved 9 recent articles from 'The Hindu Opinion'
+2026-05-30 10:34:39,383 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-05-30 10:34:39,690 [INFO] upsc-agent: Retrieved 23 recent articles from 'The Hindu Business'
+2026-05-30 10:34:39,690 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-05-30 10:34:40,025 [INFO] upsc-agent: Retrieved 35 recent articles from 'The Hindu Sci-Tech'
+2026-05-30 10:34:40,026 [INFO] upsc-agent: Total deduplicated news articles fetched: 122
+2026-05-30 10:34:40,027 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-05-30 10:34:40,027 [INFO] upsc-agent: Filtering 122 articles for UPSC relevance...
+2026-05-30 10:35:23,335 [INFO] upsc-agent: Gemini selected 93 / 122 relevant articles.
+2026-05-30 10:35:23,344 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-05-30 10:35:23,345 [INFO] upsc-agent: Analyzing article: Kochi faces waterlogging in many areas in heavy overnight showers
+2026-05-30 10:35:41,747 [INFO] upsc-agent: Analyzing article: Pahalgam after the terror attack: Why tourists are returning to Kashmir’s most beautiful hill station
+2026-05-30 10:36:08,319 [INFO] upsc-agent: Analyzing article: India’s 2022 forensic law marks shift from colonial-era framework, says National Law University VC
+2026-05-30 10:36:30,019 [INFO] upsc-agent: Analyzing article: Switzerland to collaborate with J&K on sustainable tourism, vocational training
+2026-05-30 10:36:52,447 [INFO] upsc-agent: Analyzing article: Indian court ruling on Google keyword ads could reshape online advertising
+2026-05-30 10:37:15,692 [INFO] upsc-agent: Analyzing article: Trinamool criticises 11-page Annapurna Bhandar form filling process
+2026-05-30 10:37:35,195 [INFO] upsc-agent: Analyzing article: 89 additional CAPF units, advanced surveillance, real-time monitoring for safe Amarnath yatra this year
+2026-05-30 10:37:51,692 [INFO] upsc-agent: Analyzing article: Man killed in wild elephant attack in Kerala’s Athirappilly; protest hartal called
+2026-05-30 10:38:17,416 [INFO] upsc-agent: Analysis complete. Generated 8 study cards.
+2026-05-30 10:38:17,416 [INFO] upsc-agent: Step 3: Compiling HTML newsletter...
+2026-05-30 10:38:17,417 [INFO] upsc-agent: Dry-run enabled. Saving HTML newsletter to: D:\project\agent\data\test_output.html
+2026-05-30 10:38:24,993 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-05-30 10:38:24,993 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-05-30 10:38:24,993 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-05-30 10:38:26,110 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-05-30 10:38:26,110 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-05-30 10:38:26,455 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-05-30 10:38:26,456 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-05-30 10:38:26,754 [INFO] upsc-agent: Retrieved 9 recent articles from 'The Hindu Opinion'
+2026-05-30 10:38:26,755 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-05-30 10:38:27,149 [INFO] upsc-agent: Retrieved 25 recent articles from 'The Hindu Business'
+2026-05-30 10:38:27,150 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-05-30 10:38:27,561 [INFO] upsc-agent: Retrieved 35 recent articles from 'The Hindu Sci-Tech'
+2026-05-30 10:38:27,562 [INFO] upsc-agent: Total deduplicated news articles fetched: 123
+2026-05-30 10:38:27,562 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-05-30 10:38:27,562 [INFO] upsc-agent: Filtering 123 articles for UPSC relevance...
+2026-05-30 10:39:22,007 [INFO] upsc-agent: Gemini selected 96 / 123 relevant articles.
+2026-05-30 10:39:22,027 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-05-30 10:39:22,027 [INFO] upsc-agent: Analyzing article: Infosys CEO's compensation rises 2.5% to nearly $8.7 million in fiscal 2026
+2026-05-30 10:39:44,872 [INFO] upsc-agent: Analyzing article: Pahalgam after the terror attack: Why tourists are returning to Kashmir’s most beautiful hill station
+2026-05-30 10:40:03,903 [ERROR] upsc-agent: Error analyzing article 'Pahalgam after the terror attack: Why tourists are returning to Kashmir’s most beautiful hill station': Invalid control character at: line 40 column 3134 (char 8393)
+2026-05-30 10:40:03,903 [INFO] upsc-agent: Analyzing article: India’s 2022 forensic law marks shift from colonial-era framework, says National Law University VC
+2026-05-30 10:40:24,657 [INFO] upsc-agent: Analyzing article: Switzerland to collaborate with J&K on sustainable tourism, vocational training
+2026-05-30 10:40:41,383 [INFO] upsc-agent: Analyzing article: Indian court ruling on Google keyword ads could reshape online advertising
+2026-05-30 10:40:56,650 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-05-30 10:40:56,651 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-05-30 10:40:56,651 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-05-30 10:40:58,105 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-05-30 10:40:58,105 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-05-30 10:40:58,535 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-05-30 10:40:58,536 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-05-30 10:40:58,806 [INFO] upsc-agent: Retrieved 9 recent articles from 'The Hindu Opinion'
+2026-05-30 10:40:58,806 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-05-30 10:40:59,155 [INFO] upsc-agent: Retrieved 25 recent articles from 'The Hindu Business'
+2026-05-30 10:40:59,156 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-05-30 10:40:59,444 [INFO] upsc-agent: Retrieved 35 recent articles from 'The Hindu Sci-Tech'
+2026-05-30 10:40:59,444 [INFO] upsc-agent: Total deduplicated news articles fetched: 123
+2026-05-30 10:40:59,444 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-05-30 10:40:59,444 [INFO] upsc-agent: Filtering 123 articles for UPSC relevance...
+2026-05-30 10:41:46,042 [INFO] upsc-agent: Gemini selected 96 / 123 relevant articles.
+2026-05-30 10:41:46,044 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-05-30 10:41:46,045 [INFO] upsc-agent: Analyzing article: Infosys CEO's compensation rises 2.5% to nearly $8.7 million in fiscal 2026
+2026-05-30 10:42:11,988 [INFO] upsc-agent: Analyzing article: Kochi faces waterlogging in many areas in heavy overnight showers
+2026-05-30 10:42:33,263 [INFO] upsc-agent: Analyzing article: Pahalgam after the terror attack: Why tourists are returning to Kashmir’s most beautiful hill station
+2026-05-30 10:42:33,704 [ERROR] upsc-agent: Error analyzing article 'Pahalgam after the terror attack: Why tourists are returning to Kashmir’s most beautiful hill station': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 26.725445996s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 26
+}
+]
+2026-05-30 10:42:33,705 [INFO] upsc-agent: Analyzing article: India’s 2022 forensic law marks shift from colonial-era framework, says National Law University VC
+2026-05-30 10:42:34,135 [ERROR] upsc-agent: Error analyzing article 'India’s 2022 forensic law marks shift from colonial-era framework, says National Law University VC': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 26.273542538s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 26
+}
+]
+2026-05-30 10:42:34,135 [INFO] upsc-agent: Analyzing article: Switzerland to collaborate with J&K on sustainable tourism, vocational training
+2026-05-30 10:42:34,537 [ERROR] upsc-agent: Error analyzing article 'Switzerland to collaborate with J&K on sustainable tourism, vocational training': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 25.878168929s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 25
+}
+]
+2026-05-30 10:42:34,538 [INFO] upsc-agent: Analyzing article: Indian court ruling on Google keyword ads could reshape online advertising
+2026-05-30 10:42:34,956 [ERROR] upsc-agent: Error analyzing article 'Indian court ruling on Google keyword ads could reshape online advertising': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 25.450430206s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 25
+}
+]
+2026-05-30 10:42:34,957 [INFO] upsc-agent: Analyzing article: 89 additional CAPF units, advanced surveillance, real-time monitoring for safe Amarnath yatra this year
+2026-05-30 10:42:35,411 [ERROR] upsc-agent: Error analyzing article '89 additional CAPF units, advanced surveillance, real-time monitoring for safe Amarnath yatra this year': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 25.006816115s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 25
+}
+]
+2026-05-30 10:42:35,411 [INFO] upsc-agent: Analyzing article: Man killed in wild elephant attack in Kerala’s Athirappilly; protest hartal called
+2026-05-30 10:42:35,853 [ERROR] upsc-agent: Error analyzing article 'Man killed in wild elephant attack in Kerala’s Athirappilly; protest hartal called': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 24.572047211s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 24
+}
+]
+2026-05-30 10:42:35,853 [INFO] upsc-agent: Analysis complete. Generated 8 study cards.
+2026-05-30 10:42:35,853 [INFO] upsc-agent: Step 3: Compiling HTML newsletter...
+2026-05-30 10:42:35,854 [INFO] upsc-agent: Step 4: Sending email newsletter...
+2026-05-30 10:42:35,854 [INFO] upsc-agent: Preparing to send email to rajramkola786@gmail.com via smtp.gmail.com:587...
+2026-05-30 10:42:41,287 [INFO] upsc-agent: Email sent successfully!
+2026-05-30 10:42:41,287 [INFO] upsc-agent: Daily agent workflow completed successfully.
+2026-05-30 10:43:04,274 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-05-30 10:43:04,274 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-05-30 10:43:04,274 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-05-30 10:43:05,596 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-05-30 10:43:05,597 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-05-30 10:43:05,996 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-05-30 10:43:05,996 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-05-30 10:43:06,337 [INFO] upsc-agent: Retrieved 9 recent articles from 'The Hindu Opinion'
+2026-05-30 10:43:06,338 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-05-30 10:43:06,661 [INFO] upsc-agent: Retrieved 25 recent articles from 'The Hindu Business'
+2026-05-30 10:43:06,662 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-05-30 10:43:06,983 [INFO] upsc-agent: Retrieved 36 recent articles from 'The Hindu Sci-Tech'
+2026-05-30 10:43:06,983 [INFO] upsc-agent: Total deduplicated news articles fetched: 123
+2026-05-30 10:43:06,983 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-05-30 10:43:06,983 [INFO] upsc-agent: Filtering 123 articles for UPSC relevance...
+2026-05-30 10:43:08,178 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 52.254796442s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 52
+}
+]. Retrying...
+2026-05-30 10:43:08,178 [INFO] upsc-agent: Retrying API call in 25 seconds (attempt 2/5)...
+2026-05-30 10:43:33,652 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 26.762601259s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 26
+}
+]. Retrying...
+2026-05-30 10:43:33,652 [INFO] upsc-agent: Retrying API call in 50 seconds (attempt 3/5)...
+2026-05-30 10:44:24,386 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 36.033590685s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 36
+}
+]. Retrying...
+2026-05-30 10:44:24,387 [INFO] upsc-agent: Retrying API call in 100 seconds (attempt 4/5)...
+2026-05-30 10:46:05,086 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 55.341187203s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 55
+}
+]. Retrying...
+2026-05-30 10:46:05,087 [INFO] upsc-agent: Retrying API call in 200 seconds (attempt 5/5)...
+2026-05-30 10:47:34,265 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-05-30 10:47:34,265 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-05-30 10:47:34,266 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-05-30 10:47:35,409 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-05-30 10:47:35,410 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-05-30 10:47:35,882 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-05-30 10:47:35,882 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-05-30 10:47:36,266 [INFO] upsc-agent: Retrieved 9 recent articles from 'The Hindu Opinion'
+2026-05-30 10:47:36,266 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-05-30 10:47:36,632 [INFO] upsc-agent: Retrieved 25 recent articles from 'The Hindu Business'
+2026-05-30 10:47:36,632 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-05-30 10:47:38,602 [INFO] upsc-agent: Retrieved 35 recent articles from 'The Hindu Sci-Tech'
+2026-05-30 10:47:38,602 [INFO] upsc-agent: Total deduplicated news articles fetched: 122
+2026-05-30 10:47:38,603 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-05-30 10:47:38,603 [INFO] upsc-agent: Filtering 122 articles for UPSC relevance...
+2026-05-30 10:48:02,915 [INFO] upsc-agent: Gemini selected 34 / 122 relevant articles.
+2026-05-30 10:48:02,922 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-05-30 10:48:02,923 [INFO] upsc-agent: Analyzing article: India’s 2022 forensic law marks shift from colonial-era framework, says National Law University VC
+2026-05-30 10:48:20,487 [INFO] upsc-agent: Analyzing article: Switzerland to collaborate with J&K on sustainable tourism, vocational training
+2026-05-30 10:48:35,906 [INFO] upsc-agent: Analyzing article: Kolhapur forms team of 10 transwomen for disaster management and rescue work
+2026-05-30 10:48:50,982 [INFO] upsc-agent: Analyzing article: Over 90% of Indian babies born in hospitals, 87% of one-year-olds fully vaccinated: NFHS-6
+2026-05-30 10:49:06,635 [INFO] upsc-agent: Analyzing article: Supreme Court issues guidelines for protecting survivors of human trafficking
+2026-05-30 10:49:21,589 [INFO] upsc-agent: Analyzing article: Uttar Pradesh emphasised to prevent water-borne diseases in rural areas through community driven participation
+2026-05-30 10:49:36,708 [INFO] upsc-agent: Analyzing article: Supreme Court sets 3-month deadline for High Courts to pronounce judgments after reserving orders
+2026-05-30 10:49:51,130 [INFO] upsc-agent: Analyzing article: Delhi High Court upholds TRAI regulations capping television ads to 12 minutes per hour
+2026-05-30 10:50:06,032 [INFO] upsc-agent: Analysis complete. Generated 8 study cards.
+2026-05-30 10:50:06,032 [INFO] upsc-agent: Step 3: Compiling HTML newsletter...
+2026-05-30 10:50:06,034 [INFO] upsc-agent: Step 4: Sending email newsletter...
+2026-05-30 10:50:06,034 [INFO] upsc-agent: Preparing to send email to rajramkola786@gmail.com via smtp.gmail.com:587...
+2026-05-30 10:50:11,718 [INFO] upsc-agent: Email sent successfully!
+2026-05-30 10:50:11,718 [INFO] upsc-agent: Daily agent workflow completed successfully.
+2026-05-31 10:15:37,754 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-05-31 10:15:37,761 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-05-31 10:15:37,761 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-05-31 10:15:38,002 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-05-31 10:15:38,002 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-05-31 10:15:38,134 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-05-31 10:15:38,134 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-05-31 10:15:38,264 [INFO] upsc-agent: Retrieved 7 recent articles from 'The Hindu Opinion'
+2026-05-31 10:15:38,265 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-05-31 10:15:38,377 [INFO] upsc-agent: Retrieved 14 recent articles from 'The Hindu Business'
+2026-05-31 10:15:38,377 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-05-31 10:15:38,509 [INFO] upsc-agent: Retrieved 32 recent articles from 'The Hindu Sci-Tech'
+2026-05-31 10:15:38,510 [INFO] upsc-agent: Total deduplicated news articles fetched: 108
+2026-05-31 10:15:38,510 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-05-31 10:15:38,510 [INFO] upsc-agent: Filtering 108 articles for UPSC relevance...
+2026-05-31 10:16:04,164 [INFO] upsc-agent: Gemini selected 38 / 108 relevant articles.
+2026-05-31 10:16:04,266 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-05-31 10:16:04,266 [INFO] upsc-agent: Analyzing article: General Subramani takes charge as new Chief of Defence Staff
+2026-05-31 10:16:21,386 [INFO] upsc-agent: Analyzing article: Onion farmers seek ₹10,000 crore revival package, stable export policy from Centre
+2026-05-31 10:16:39,313 [INFO] upsc-agent: Analyzing article: Second-life surgery | Surrendered Maoists in Maharashtra reverse vasectomies for family life
+2026-05-31 10:16:56,302 [INFO] upsc-agent: Analyzing article: News in Frames | Bringing water to a scorching desert
+2026-05-31 10:17:09,861 [INFO] upsc-agent: Analyzing article: Delhi High Court’s pathbreaking ruling on Google keyword advertising | Explained
+2026-05-31 10:17:24,612 [INFO] upsc-agent: Analyzing article: Kochi sailor who endured Equatorial Guinea’s detention feels relieved with international tribunal’s verdict
+2026-05-31 10:17:41,235 [INFO] upsc-agent: Analyzing article: Audit of fundamental rights’ effectiveness could yield ‘uncomfortable’ findings:  J. Chelameswar
+2026-05-31 10:30:09,094 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-05-31 10:30:09,094 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-05-31 10:30:09,095 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-05-31 10:30:09,321 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-05-31 10:30:09,321 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-05-31 10:30:09,450 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-05-31 10:30:09,450 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-05-31 10:30:09,569 [INFO] upsc-agent: Retrieved 7 recent articles from 'The Hindu Opinion'
+2026-05-31 10:30:09,569 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-05-31 10:30:09,707 [INFO] upsc-agent: Retrieved 13 recent articles from 'The Hindu Business'
+2026-05-31 10:30:09,708 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-05-31 10:30:09,845 [INFO] upsc-agent: Retrieved 31 recent articles from 'The Hindu Sci-Tech'
+2026-05-31 10:30:09,846 [INFO] upsc-agent: Total deduplicated news articles fetched: 107
+2026-05-31 10:30:09,846 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-05-31 10:30:09,847 [INFO] upsc-agent: Filtering 107 articles for UPSC relevance...
+2026-05-31 10:30:35,858 [INFO] upsc-agent: Gemini selected 42 / 107 relevant articles.
+2026-05-31 10:30:35,895 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-05-31 10:30:35,895 [INFO] upsc-agent: Analyzing article: General Subramani takes charge as new Chief of Defence Staff
+2026-05-31 10:30:51,826 [INFO] upsc-agent: Analyzing article: Onion farmers seek ₹10,000 crore revival package, stable export policy from Centre
+2026-05-31 10:31:07,181 [INFO] upsc-agent: Analyzing article: Second-life surgery | Surrendered Maoists in Maharashtra reverse vasectomies for family life
+2026-05-31 10:31:23,534 [INFO] upsc-agent: Analyzing article: News in Frames | Bringing water to a scorching desert
+2026-05-31 10:31:39,770 [INFO] upsc-agent: Analyzing article: Delhi High Court’s pathbreaking ruling on Google keyword advertising | Explained
+2026-05-31 10:31:55,399 [INFO] upsc-agent: Analyzing article: Kochi sailor who endured Equatorial Guinea’s detention feels relieved with international tribunal’s verdict
+2026-05-31 10:32:11,638 [INFO] upsc-agent: Analyzing article: Audit of fundamental rights’ effectiveness could yield ‘uncomfortable’ findings:  J. Chelameswar
+2026-05-31 10:32:29,394 [INFO] upsc-agent: Analyzing article: Uttar Pradesh police warn of growing hybrid cybercrime threat, stress public awareness
+2026-05-31 10:32:42,556 [INFO] upsc-agent: Analysis complete. Generated 8 study cards.
+2026-05-31 10:32:42,557 [INFO] upsc-agent: Step 3: Compiling HTML newsletter...
+2026-05-31 10:32:42,558 [INFO] upsc-agent: Step 4: Sending email newsletter...
+2026-05-31 10:32:42,558 [INFO] upsc-agent: Preparing to send email to rajramkola786@gmail.com via smtp.gmail.com:587...
+2026-05-31 10:32:47,107 [INFO] upsc-agent: Email sent successfully!
+2026-05-31 10:32:47,107 [INFO] upsc-agent: Daily agent workflow completed successfully.
+2026-05-31 10:35:53,798 [INFO] upsc-agent: Preparing to send email to rajramkola786@gmail.com via smtp.gmail.com:587 (attempt 1/3)...
+2026-05-31 10:35:57,239 [INFO] upsc-agent: Email sent successfully!
+2026-06-01 10:20:18,835 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-06-01 10:20:18,836 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-06-01 10:20:18,836 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-06-01 10:20:19,803 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-06-01 10:20:19,804 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-06-01 10:20:20,204 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-06-01 10:20:20,205 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-06-01 10:20:20,567 [INFO] upsc-agent: Retrieved 12 recent articles from 'The Hindu Opinion'
+2026-06-01 10:20:20,568 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-06-01 10:20:20,870 [INFO] upsc-agent: Retrieved 14 recent articles from 'The Hindu Business'
+2026-06-01 10:20:20,870 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-06-01 10:20:21,153 [INFO] upsc-agent: Retrieved 19 recent articles from 'The Hindu Sci-Tech'
+2026-06-01 10:20:21,154 [INFO] upsc-agent: Total deduplicated news articles fetched: 99
+2026-06-01 10:20:21,154 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-06-01 10:20:21,154 [INFO] upsc-agent: Filtering 99 articles for UPSC relevance...
+2026-06-01 10:20:38,862 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-3.5-flash
+Please retry in 23.237514684s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 5
+}
+, retry_delay {
+  seconds: 23
+}
+]. Retrying...
+2026-06-01 10:20:38,862 [INFO] upsc-agent: Retrying API call in 25 seconds (attempt 2/5)...
+2026-06-01 10:21:04,059 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-3.5-flash
+Please retry in 58.038217993s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 5
+}
+, retry_delay {
+  seconds: 58
+}
+]. Retrying...
+2026-06-01 10:21:04,063 [INFO] upsc-agent: Retrying API call in 50 seconds (attempt 3/5)...
+2026-06-01 10:23:24,985 [INFO] upsc-agent: Gemini selected 36 / 99 relevant articles.
+2026-06-01 10:23:25,015 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-06-01 10:23:25,016 [INFO] upsc-agent: Analyzing article: Nepal has encroached on Indian territory as well: PM Balendra Shah
+2026-06-01 10:24:42,860 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-3.5-flash
+Please retry in 19.247507346s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 5
+}
+, retry_delay {
+  seconds: 19
+}
+]. Retrying...
+2026-06-01 10:24:42,861 [INFO] upsc-agent: Retrying API call in 25 seconds (attempt 2/5)...
+2026-06-01 10:25:08,028 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-3.5-flash
+Please retry in 54.067508289s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 5
+}
+, retry_delay {
+  seconds: 54
+}
+]. Retrying...
+2026-06-01 10:25:08,029 [INFO] upsc-agent: Retrying API call in 50 seconds (attempt 3/5)...
+2026-06-01 10:26:29,946 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash
+Please retry in 32.151875493s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 32
+}
+]. Retrying...
+2026-06-01 10:26:29,946 [INFO] upsc-agent: Retrying API call in 100 seconds (attempt 4/5)...
+2026-06-01 10:28:10,335 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash
+Please retry in 51.768805968s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 51
+}
+]. Retrying...
+2026-06-01 10:28:10,335 [INFO] upsc-agent: Retrying API call in 200 seconds (attempt 5/5)...
+2026-06-01 10:31:31,100 [ERROR] upsc-agent: Error analyzing article 'Nepal has encroached on Indian territory as well: PM Balendra Shah': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash
+Please retry in 31.000101458s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 31
+}
+]
+2026-06-01 10:31:33,101 [INFO] upsc-agent: Analyzing article: Supreme Court gets 5 new judges; strength to go up to 37
+2026-06-01 10:31:33,379 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash
+Please retry in 28.817800037s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 28
+}
+]. Retrying...
+2026-06-01 10:31:33,379 [INFO] upsc-agent: Retrying API call in 25 seconds (attempt 2/5)...
+2026-06-01 10:31:58,562 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash
+Please retry in 3.529903326s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 3
+}
+]. Retrying...
+2026-06-01 10:31:58,562 [INFO] upsc-agent: Retrying API call in 50 seconds (attempt 3/5)...
+2026-06-01 10:32:48,972 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash
+Please retry in 13.150690783s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 13
+}
+]. Retrying...
+2026-06-01 10:32:48,972 [INFO] upsc-agent: Retrying API call in 100 seconds (attempt 4/5)...
+2026-06-01 10:34:29,399 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash
+Please retry in 32.720333365s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 32
+}
+]. Retrying...
+2026-06-01 10:34:29,400 [INFO] upsc-agent: Retrying API call in 200 seconds (attempt 5/5)...
+2026-06-01 11:44:33,131 [INFO] upsc-agent: Preparing to send email to rajramkola786@gmail.com via smtp.gmail.com:587 (attempt 1/3)...
+2026-06-01 11:44:37,466 [INFO] upsc-agent: Email sent successfully!
+2026-06-01 11:44:41,541 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-06-01 11:44:41,541 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-06-01 11:44:41,541 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-06-01 11:44:42,825 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-06-01 11:44:42,826 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-06-01 11:44:43,388 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-06-01 11:44:43,388 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-06-01 11:44:43,766 [INFO] upsc-agent: Retrieved 12 recent articles from 'The Hindu Opinion'
+2026-06-01 11:44:43,766 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-06-01 11:44:44,130 [INFO] upsc-agent: Retrieved 16 recent articles from 'The Hindu Business'
+2026-06-01 11:44:44,131 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-06-01 11:44:44,441 [INFO] upsc-agent: Retrieved 23 recent articles from 'The Hindu Sci-Tech'
+2026-06-01 11:44:44,442 [INFO] upsc-agent: Total deduplicated news articles fetched: 103
+2026-06-01 11:44:44,442 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-06-01 11:44:44,442 [INFO] upsc-agent: Filtering 103 articles for UPSC relevance...
+2026-06-01 11:45:06,647 [INFO] upsc-agent: Gemini selected 35 / 103 relevant articles.
+2026-06-01 11:45:06,653 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-06-01 11:45:06,654 [INFO] upsc-agent: Analyzing article: Supreme Court gets 5 new judges; strength to go up to 37
+2026-06-01 11:45:06,839 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash
+Please retry in 55.249920011s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 55
+}
+]. Retrying...
+2026-06-01 11:45:06,839 [INFO] upsc-agent: Retrying API call in 25 seconds (attempt 2/5)...
+2026-06-01 11:45:32,039 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash
+Please retry in 30.053396994s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 30
+}
+]. Retrying...
+2026-06-01 11:45:32,039 [INFO] upsc-agent: Retrying API call in 50 seconds (attempt 3/5)...
+2026-06-01 11:46:22,237 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash
+Please retry in 39.853252544s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 39
+}
+]. Retrying...
+2026-06-01 11:46:22,238 [INFO] upsc-agent: Retrying API call in 100 seconds (attempt 4/5)...
+2026-06-01 11:48:02,650 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash
+Please retry in 59.4463934s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 59
+}
+]. Retrying...
+2026-06-01 11:48:02,651 [INFO] upsc-agent: Retrying API call in 200 seconds (attempt 5/5)...
+2026-06-01 11:49:07,135 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-06-01 11:49:07,136 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-06-01 11:49:07,136 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-06-01 11:49:08,130 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-06-01 11:49:08,130 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-06-01 11:49:08,594 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-06-01 11:49:08,594 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-06-01 11:49:09,097 [INFO] upsc-agent: Retrieved 12 recent articles from 'The Hindu Opinion'
+2026-06-01 11:49:09,097 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-06-01 11:49:09,544 [INFO] upsc-agent: Retrieved 16 recent articles from 'The Hindu Business'
+2026-06-01 11:49:09,545 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-06-01 11:49:10,201 [INFO] upsc-agent: Retrieved 23 recent articles from 'The Hindu Sci-Tech'
+2026-06-01 11:49:10,201 [INFO] upsc-agent: Total deduplicated news articles fetched: 103
+2026-06-01 11:49:10,202 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-06-01 11:49:10,202 [INFO] upsc-agent: Filtering 103 articles for UPSC relevance...
+2026-06-01 11:50:15,795 [INFO] upsc-agent: Gemini selected 63 / 103 relevant articles.
+2026-06-01 11:50:15,801 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-06-01 11:50:15,801 [INFO] upsc-agent: Analyzing article: Over 56,000 qualify JEE (Advanced) 2026; Shubham Kumar secures AIR 1
+2026-06-01 11:50:58,515 [INFO] upsc-agent: Analyzing article: T.N. government announces zero-tolerance approach towards delays in sanctioning building plan approvals
+2026-06-01 11:51:51,623 [INFO] upsc-agent: Analyzing article: Supreme Court gets 5 new judges; strength to go up to 37
+2026-06-01 11:51:52,042 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash
+Please retry in 10.319931874s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 5
+}
+, retry_delay {
+  seconds: 10
+}
+]. Retrying...
+2026-06-01 11:51:52,042 [INFO] upsc-agent: Retrying API call in 25 seconds (attempt 2/5)...
+2026-06-01 11:52:29,059 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 33.302734815s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 33
+}
+]. Retrying...
+2026-06-01 11:52:29,060 [INFO] upsc-agent: Retrying API call in 50 seconds (attempt 3/5)...
+2026-06-01 11:53:19,438 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 42.881626257s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 42
+}
+]. Retrying...
+2026-06-01 11:53:19,439 [INFO] upsc-agent: Retrying API call in 100 seconds (attempt 4/5)...
+2026-06-01 11:54:06,761 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-06-01 11:54:06,761 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-06-01 11:54:06,762 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-06-01 11:54:07,672 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-06-01 11:54:07,673 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-06-01 11:54:08,217 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-06-01 11:54:08,219 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-06-01 11:54:08,589 [INFO] upsc-agent: Retrieved 12 recent articles from 'The Hindu Opinion'
+2026-06-01 11:54:08,589 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-06-01 11:54:08,986 [INFO] upsc-agent: Retrieved 16 recent articles from 'The Hindu Business'
+2026-06-01 11:54:08,987 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-06-01 11:54:09,328 [INFO] upsc-agent: Retrieved 22 recent articles from 'The Hindu Sci-Tech'
+2026-06-01 11:54:09,329 [INFO] upsc-agent: Total deduplicated news articles fetched: 102
+2026-06-01 11:54:09,329 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-06-01 11:54:09,329 [INFO] upsc-agent: Filtering 102 articles for UPSC relevance...
+2026-06-01 11:54:09,825 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 52.260642998s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 52
+}
+]. Retrying...
+2026-06-01 11:54:09,825 [INFO] upsc-agent: Retrying API call in 25 seconds (attempt 2/5)...
+2026-06-01 11:54:35,010 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 27.074481914s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 27
+}
+]. Retrying...
+2026-06-01 11:54:35,011 [INFO] upsc-agent: Retrying API call in 50 seconds (attempt 3/5)...
+2026-06-01 11:55:25,181 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 36.905563578s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 36
+}
+]. Retrying...
+2026-06-01 11:55:25,182 [INFO] upsc-agent: Retrying API call in 100 seconds (attempt 4/5)...
+2026-06-01 11:57:05,417 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 56.726285698s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 56
+}
+]. Retrying...
+2026-06-01 11:57:05,418 [INFO] upsc-agent: Retrying API call in 200 seconds (attempt 5/5)...
+2026-06-01 12:00:25,921 [ERROR] upsc-agent: Error in UPSC filtering stage: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 36.171646076s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 36
+}
+]
+2026-06-01 12:00:25,925 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-06-01 12:00:25,925 [INFO] upsc-agent: Analyzing article: Over 56,000 qualify JEE (Advanced) 2026; Shubham Kumar secures AIR 1
+2026-06-01 12:00:26,119 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 35.980736637s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 35
+}
+]. Retrying...
+2026-06-01 12:00:26,119 [INFO] upsc-agent: Retrying API call in 25 seconds (attempt 2/5)...
+2026-06-01 12:00:51,315 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 10.772628021s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 10
+}
+]. Retrying...
+2026-06-01 12:00:51,315 [INFO] upsc-agent: Retrying API call in 50 seconds (attempt 3/5)...
+2026-06-01 12:01:31,692 [WARNING] upsc-agent: GEMINI_API_KEY environment variable is not set. API calls will fail.
+2026-06-01 12:01:31,695 [ERROR] upsc-agent: GEMINI_API_KEY is not set.
+2026-06-01 12:01:45,869 [WARNING] upsc-agent: GEMINI_API_KEY environment variable is not set. API calls will fail.
+2026-06-01 12:01:45,873 [WARNING] upsc-agent: GEMINI_API_KEY is not set. Running in mock mode.
+2026-06-01 12:01:45,874 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-06-01 12:01:45,874 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-06-01 12:01:45,874 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=1
+2026-06-01 12:01:46,913 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-06-01 12:01:46,913 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-06-01 12:01:47,262 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-06-01 12:01:47,262 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-06-01 12:01:47,520 [INFO] upsc-agent: Retrieved 12 recent articles from 'The Hindu Opinion'
+2026-06-01 12:01:47,520 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-06-01 12:01:47,801 [INFO] upsc-agent: Retrieved 16 recent articles from 'The Hindu Business'
+2026-06-01 12:01:47,801 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-06-01 12:01:48,067 [INFO] upsc-agent: Retrieved 22 recent articles from 'The Hindu Sci-Tech'
+2026-06-01 12:01:48,067 [INFO] upsc-agent: Total deduplicated news articles fetched: 102
+2026-06-01 12:01:48,067 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-06-01 12:01:48,067 [WARNING] upsc-agent: GEMINI_API_KEY is not set. Running in MOCK MODE and selecting first 5 articles.
+2026-06-01 12:01:48,069 [INFO] upsc-agent: Generating UPSC study cards for 5 articles...
+2026-06-01 18:31:13,835 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-06-01 18:31:13,849 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-06-01 18:31:13,850 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1
+2026-06-01 18:31:15,056 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-06-01 18:31:15,056 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-06-01 18:31:15,537 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-06-01 18:31:15,538 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-06-01 18:31:16,005 [INFO] upsc-agent: Retrieved 11 recent articles from 'The Hindu Opinion'
+2026-06-01 18:31:16,006 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-06-01 18:31:16,343 [INFO] upsc-agent: Retrieved 18 recent articles from 'The Hindu Business'
+2026-06-01 18:31:16,343 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-06-01 18:31:17,076 [INFO] upsc-agent: Retrieved 28 recent articles from 'The Hindu Sci-Tech'
+2026-06-01 18:31:17,077 [INFO] upsc-agent: Total deduplicated news articles fetched: 110
+2026-06-01 18:31:17,077 [INFO] upsc-agent: Step 1b: Fetching verification and curation sources...
+2026-06-01 18:31:17,078 [INFO] upsc-agent: Fetching Insights on India main feed from: https://www.insightsonindia.com/feed/
+2026-06-01 18:31:17,799 [INFO] upsc-agent: Found Daily CA post: 'UPSC CURRENT AFFAIRS 1 JUNE 2026' at URL: https://www.insightsonindia.com/2026/06/01/upsc-current-affairs-1-june-2026/
+2026-06-01 18:31:18,659 [INFO] upsc-agent: Parsing Insights topics using class-based structure (found 10 topics)...
+2026-06-01 18:31:18,662 [INFO] upsc-agent: Successfully scraped 10 topics from Insights on India post.
+2026-06-01 18:31:18,666 [INFO] upsc-agent: Fetching YouTube feed 'StudyIQ UPSC CSE' from: https://www.youtube.com/feeds/videos.xml?channel_id=UCl9HsnUFaRBrkql1Gly6ICQ
+2026-06-01 18:31:19,124 [INFO] upsc-agent: Retrieved 1 recent video titles from YouTube 'StudyIQ UPSC CSE'
+2026-06-01 18:31:19,126 [INFO] upsc-agent: Fetching YouTube feed 'PW OnlyIAS' from: https://www.youtube.com/feeds/videos.xml?channel_id=UC4qbM7cBX0xxNbCY2D7rj4A
+2026-06-01 18:31:19,467 [INFO] upsc-agent: Retrieved 3 recent video titles from YouTube 'PW OnlyIAS'
+2026-06-01 18:31:19,469 [INFO] upsc-agent: Verification data summary: 10 Insights topics, 4 YouTube topics.
+2026-06-01 18:31:19,469 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-06-01 18:31:19,469 [INFO] upsc-agent: Filtering and curating news articles using verification sources...
+2026-06-01 18:33:11,451 [INFO] upsc-agent: Gemini selected 75 / 110 raw articles.
+2026-06-01 18:33:11,451 [INFO] upsc-agent: Topic 'Operation Sheruwali' is unmatched in news feeds. Synthesizing article from InsightsIAS...
+2026-06-01 18:33:11,452 [INFO] upsc-agent: Topic 'The Ayushman Bharat Digital Mission (ABDM)' is unmatched in news feeds. Synthesizing article from InsightsIAS...
+2026-06-01 18:33:11,452 [INFO] upsc-agent: Topic 'The Northwest Indian Dust Storms' is unmatched in news feeds. Synthesizing article from InsightsIAS...
+2026-06-01 18:33:11,452 [INFO] upsc-agent: Topic 'The BrahMos Missile' is unmatched in news feeds. Synthesizing article from InsightsIAS...
+2026-06-01 18:33:11,452 [INFO] upsc-agent: Topic 'Admiral Krishna Swaminathan Assumes Charge As Navy Chief' is unmatched in news feeds. Synthesizing article from InsightsIAS...
+2026-06-01 18:33:11,453 [INFO] upsc-agent: Topic 'Blue Micromoon' is unmatched in news feeds. Synthesizing article from InsightsIAS...
+2026-06-01 18:33:11,453 [INFO] upsc-agent: Topic 'Nagaland Cascade Frog' is unmatched in news feeds. Synthesizing article from InsightsIAS...
+2026-06-01 18:33:11,453 [INFO] upsc-agent: Curation complete. Added 7 synthesized articles from InsightsIAS. Total curated: 82
+2026-06-01 18:33:11,505 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-06-01 18:33:11,505 [INFO] upsc-agent: Analyzing article: BJP attacks Kapil Sibal over 'ashamed to live in India' remark
+2026-06-01 18:33:39,636 [INFO] upsc-agent: Analyzing article: From Andal to the Raman Effect, new book captures Srivilliputhur’s many legacies
+2026-06-01 18:34:01,643 [INFO] upsc-agent: Analyzing article: Mango and jackfruit mela in Shivamogga from June 5
+2026-06-01 18:34:16,429 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 5, model: gemini-2.5-flash
+Please retry in 45.924866883s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 5
+}
+, retry_delay {
+  seconds: 45
+}
+]. Retrying...
+2026-06-01 18:34:16,429 [INFO] upsc-agent: Retrying API call in 25 seconds (attempt 2/5)...
+2026-06-01 18:35:03,556 [INFO] upsc-agent: Analyzing article: Hijab ban rollback: Sri Rama Sene distributes saffron shawls to college students in Hubballi
+2026-06-01 18:35:51,386 [INFO] upsc-agent: Analyzing article: Notification for polls to fill up four Rajya Sabha seats in Karnataka issued
+2026-06-01 18:35:51,838 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 10.533444134s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 10
+}
+]. Retrying...
+2026-06-01 18:35:51,838 [INFO] upsc-agent: Retrying API call in 25 seconds (attempt 2/5)...
+2026-06-01 18:36:17,242 [WARNING] upsc-agent: Rate limit hit: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 45.10470281s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 45
+}
+]. Retrying...
+2026-06-01 18:36:17,242 [INFO] upsc-agent: Retrying API call in 50 seconds (attempt 3/5)...
+2026-06-01 18:36:36,360 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-06-01 18:36:36,361 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-06-01 18:36:36,361 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1
+2026-06-01 18:36:37,510 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-06-01 18:36:37,510 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-06-01 18:36:38,041 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-06-01 18:36:38,041 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-06-01 18:36:38,336 [INFO] upsc-agent: Retrieved 11 recent articles from 'The Hindu Opinion'
+2026-06-01 18:36:38,336 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-06-01 18:36:38,658 [INFO] upsc-agent: Retrieved 18 recent articles from 'The Hindu Business'
+2026-06-01 18:36:38,659 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-06-01 18:36:39,057 [INFO] upsc-agent: Retrieved 28 recent articles from 'The Hindu Sci-Tech'
+2026-06-01 18:36:39,058 [INFO] upsc-agent: Total deduplicated news articles fetched: 110
+2026-06-01 18:36:39,058 [INFO] upsc-agent: Step 1b: Fetching verification and curation sources...
+2026-06-01 18:36:39,058 [INFO] upsc-agent: Fetching Insights on India main feed from: https://www.insightsonindia.com/feed/
+2026-06-01 18:36:39,565 [INFO] upsc-agent: Found Daily CA post: 'UPSC CURRENT AFFAIRS 1 JUNE 2026' at URL: https://www.insightsonindia.com/2026/06/01/upsc-current-affairs-1-june-2026/
+2026-06-01 18:36:40,248 [INFO] upsc-agent: Parsing Insights topics using class-based structure (found 10 topics)...
+2026-06-01 18:36:40,249 [INFO] upsc-agent: Successfully scraped 10 topics from Insights on India post.
+2026-06-01 18:36:40,250 [INFO] upsc-agent: Fetching YouTube feed 'StudyIQ UPSC CSE' from: https://www.youtube.com/feeds/videos.xml?channel_id=UCl9HsnUFaRBrkql1Gly6ICQ
+2026-06-01 18:36:40,740 [INFO] upsc-agent: Retrieved 1 recent video titles from YouTube 'StudyIQ UPSC CSE'
+2026-06-01 18:36:40,742 [INFO] upsc-agent: Fetching YouTube feed 'PW OnlyIAS' from: https://www.youtube.com/feeds/videos.xml?channel_id=UC4qbM7cBX0xxNbCY2D7rj4A
+2026-06-01 18:36:41,039 [INFO] upsc-agent: Retrieved 3 recent video titles from YouTube 'PW OnlyIAS'
+2026-06-01 18:36:41,040 [INFO] upsc-agent: Verification data summary: 10 Insights topics, 4 YouTube topics.
+2026-06-01 18:36:41,040 [INFO] upsc-agent: Step 2: Processing and analyzing articles via Gemini...
+2026-06-01 18:36:41,040 [INFO] upsc-agent: Filtering and curating news articles using verification sources...
+2026-06-01 18:36:41,921 [ERROR] upsc-agent: Error during curated news filtering: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 20.407005633s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 20
+}
+]
+2026-06-01 18:36:41,922 [INFO] upsc-agent: Filtering 110 articles for UPSC relevance...
+2026-06-01 18:36:42,397 [ERROR] upsc-agent: Error in UPSC filtering stage: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 19.958781654s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 19
+}
+]
+2026-06-01 18:36:42,403 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-06-01 18:36:42,404 [INFO] upsc-agent: Analyzing article: BJP attacks Kapil Sibal over 'ashamed to live in India' remark
+2026-06-01 18:36:42,806 [ERROR] upsc-agent: Error analyzing article 'BJP attacks Kapil Sibal over 'ashamed to live in India' remark': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 19.535500072s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 19
+}
+]
+2026-06-01 18:36:44,807 [INFO] upsc-agent: Analyzing article: From Andal to the Raman Effect, new book captures Srivilliputhur’s many legacies
+2026-06-01 18:36:45,251 [ERROR] upsc-agent: Error analyzing article 'From Andal to the Raman Effect, new book captures Srivilliputhur’s many legacies': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 17.114954574s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 17
+}
+]
+2026-06-01 18:36:47,252 [INFO] upsc-agent: Analyzing article: Mango and jackfruit mela in Shivamogga from June 5
+2026-06-01 18:36:47,665 [ERROR] upsc-agent: Error analyzing article 'Mango and jackfruit mela in Shivamogga from June 5': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 14.690454072s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 14
+}
+]
+2026-06-01 18:36:49,666 [INFO] upsc-agent: Analyzing article: Mallabad Lift Irrigation Horata Samiti warns of massive protest on June 9
+2026-06-01 18:36:50,081 [ERROR] upsc-agent: Error analyzing article 'Mallabad Lift Irrigation Horata Samiti warns of massive protest on June 9': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 12.260653433s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 12
+}
+]
+2026-06-01 18:36:52,082 [INFO] upsc-agent: Analyzing article: Hijab ban rollback: Sri Rama Sene distributes saffron shawls to college students in Hubballi
+2026-06-01 18:36:52,497 [ERROR] upsc-agent: Error analyzing article 'Hijab ban rollback: Sri Rama Sene distributes saffron shawls to college students in Hubballi': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 9.86790925s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 9
+}
+]
+2026-06-01 18:36:54,498 [INFO] upsc-agent: Analyzing article: RJD leaders slam NDA govt. for asking Rabri Devi to vacate bungalow, term it ‘vendetta politics’
+2026-06-01 18:36:54,953 [ERROR] upsc-agent: Error analyzing article 'RJD leaders slam NDA govt. for asking Rabri Devi to vacate bungalow, term it ‘vendetta politics’': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 7.396281277s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 7
+}
+]
+2026-06-01 18:36:56,955 [INFO] upsc-agent: Analyzing article: Notification for polls to fill up four Rajya Sabha seats in Karnataka issued
+2026-06-01 18:36:57,390 [ERROR] upsc-agent: Error analyzing article 'Notification for polls to fill up four Rajya Sabha seats in Karnataka issued': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 4.958976574s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 4
+}
+]
+2026-06-01 18:36:59,391 [INFO] upsc-agent: Analyzing article: EC reviews progress of SIR in Sikkim, asks BLOs to assist voters in filling up forms
+2026-06-01 18:36:59,799 [ERROR] upsc-agent: Error analyzing article 'EC reviews progress of SIR in Sikkim, asks BLOs to assist voters in filling up forms': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 2.541093742s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 2
+}
+]
+2026-06-01 18:36:59,800 [INFO] upsc-agent: Analysis complete. Generated 8 study cards.
+2026-06-01 18:36:59,803 [INFO] upsc-agent: Saved 8 generated study cards to cache: D:\project\agent\data\brief_2026-06-01.json
+2026-06-01 18:36:59,803 [INFO] upsc-agent: Step 3: Compiling HTML newsletter...
+2026-06-01 18:36:59,803 [INFO] upsc-agent: Dry-run enabled. Saving HTML newsletter to: D:\project\agent\data\test_output.html
+2026-06-01 18:37:07,395 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-06-01 18:37:07,396 [INFO] upsc-agent: Loading cached UPSC study cards from D:\project\agent\data\brief_2026-06-01.json for today...
+2026-06-01 18:37:07,396 [INFO] upsc-agent: Successfully loaded 8 study cards from cache.
+2026-06-01 18:37:07,396 [INFO] upsc-agent: Step 3: Compiling HTML newsletter...
+2026-06-01 18:37:07,396 [INFO] upsc-agent: Dry-run enabled. Saving HTML newsletter to: D:\project\agent\data\test_output.html
+2026-06-01 18:37:12,423 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-06-01 18:37:12,423 [INFO] upsc-agent: Step 1: Fetching recent news...
+2026-06-01 18:37:12,423 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1
+2026-06-01 18:37:13,452 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-06-01 18:37:13,452 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-06-01 18:37:13,798 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-06-01 18:37:13,798 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-06-01 18:37:14,091 [INFO] upsc-agent: Retrieved 11 recent articles from 'The Hindu Opinion'
+2026-06-01 18:37:14,091 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-06-01 18:37:14,402 [INFO] upsc-agent: Retrieved 18 recent articles from 'The Hindu Business'
+2026-06-01 18:37:14,402 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-06-01 18:37:14,770 [INFO] upsc-agent: Retrieved 28 recent articles from 'The Hindu Sci-Tech'
+2026-06-01 18:37:14,771 [INFO] upsc-agent: Total deduplicated news articles fetched: 110
+2026-06-01 18:37:14,772 [INFO] upsc-agent: Step 1b: Fetching verification and curation sources...
+2026-06-01 18:37:14,772 [INFO] upsc-agent: Fetching Insights on India main feed from: https://www.insightsonindia.com/feed/
+2026-06-01 18:50:46,398 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-06-01 18:50:46,398 [INFO] upsc-agent: Loading cached UPSC study cards from D:\project\agent\data\brief_2026-06-01.json for today...
+2026-06-01 18:50:46,398 [INFO] upsc-agent: Successfully loaded 8 study cards from cache.
+2026-06-01 18:50:46,398 [INFO] upsc-agent: Fetching recent news articles...
+2026-06-01 18:50:46,398 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1
+2026-06-01 18:50:47,356 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-06-01 18:50:47,356 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-06-01 18:50:47,773 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-06-01 18:50:47,774 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-06-01 18:50:48,075 [INFO] upsc-agent: Retrieved 11 recent articles from 'The Hindu Opinion'
+2026-06-01 18:50:48,075 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-06-01 18:50:48,378 [INFO] upsc-agent: Retrieved 18 recent articles from 'The Hindu Business'
+2026-06-01 18:50:48,378 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-06-01 18:50:48,791 [INFO] upsc-agent: Retrieved 27 recent articles from 'The Hindu Sci-Tech'
+2026-06-01 18:50:48,792 [INFO] upsc-agent: Total deduplicated news articles fetched: 110
+2026-06-01 18:50:48,792 [INFO] upsc-agent: Fetching verification and curation sources...
+2026-06-01 18:50:48,792 [INFO] upsc-agent: Fetching Insights on India main feed from: https://www.insightsonindia.com/feed/
+2026-06-01 18:50:49,309 [INFO] upsc-agent: Found Daily CA post: 'UPSC CURRENT AFFAIRS 1 JUNE 2026' at URL: https://www.insightsonindia.com/2026/06/01/upsc-current-affairs-1-june-2026/
+2026-06-01 18:50:49,834 [INFO] upsc-agent: Parsing Insights topics using class-based structure (found 10 topics)...
+2026-06-01 18:50:49,836 [INFO] upsc-agent: Successfully scraped 10 topics from Insights on India post.
+2026-06-01 18:50:49,838 [INFO] upsc-agent: Fetching YouTube feed 'StudyIQ UPSC CSE' from: https://www.youtube.com/feeds/videos.xml?channel_id=UCl9HsnUFaRBrkql1Gly6ICQ
+2026-06-01 18:50:50,408 [INFO] upsc-agent: Retrieved 1 recent video titles from YouTube 'StudyIQ UPSC CSE'
+2026-06-01 18:50:50,410 [INFO] upsc-agent: Fetching YouTube feed 'PW OnlyIAS' from: https://www.youtube.com/feeds/videos.xml?channel_id=UC4qbM7cBX0xxNbCY2D7rj4A
+2026-06-01 18:50:51,245 [INFO] upsc-agent: Retrieved 3 recent video titles from YouTube 'PW OnlyIAS'
+2026-06-01 18:50:51,247 [INFO] upsc-agent: Verification data summary: 10 Insights topics, 4 YouTube topics.
+2026-06-01 18:50:51,247 [INFO] upsc-agent: Comparing fetched articles against cached brief to identify updates...
+2026-06-01 18:50:51,248 [INFO] upsc-agent: Identified 102 new raw articles, 10 new Insights topics, and 4 new YouTube topics.
+2026-06-01 18:50:51,248 [INFO] upsc-agent: Processing and analyzing new updates via Gemini...
+2026-06-01 18:50:51,248 [INFO] upsc-agent: Filtering and curating news articles using verification sources...
+2026-06-01 18:50:52,290 [ERROR] upsc-agent: Error during curated news filtering: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 10.061960281s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 10
+}
+]
+2026-06-01 18:50:52,290 [INFO] upsc-agent: Filtering 102 articles for UPSC relevance...
+2026-06-01 18:50:52,821 [ERROR] upsc-agent: Error in UPSC filtering stage: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 9.539698612s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 9
+}
+]
+2026-06-01 18:50:52,825 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-06-01 18:50:52,825 [INFO] upsc-agent: Analyzing article: Man with pregnant wife sits on road in protest against Governor’s convoy in Bengaluru
+2026-06-01 18:50:53,211 [ERROR] upsc-agent: Error analyzing article 'Man with pregnant wife sits on road in protest against Governor’s convoy in Bengaluru': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 9.118077925s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 9
+}
+]
+2026-06-01 18:50:55,212 [INFO] upsc-agent: Analyzing article: Brahmotsavam at TTD’s Karvetinagaram temple from June 6
+2026-06-01 18:50:55,661 [ERROR] upsc-agent: Error analyzing article 'Brahmotsavam at TTD’s Karvetinagaram temple from June 6': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 6.706978936s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 6
+}
+]
+2026-06-01 18:50:57,662 [INFO] upsc-agent: Analyzing article: Back to school: Mysuru welcomes students with festive spirit
+2026-06-01 18:50:58,122 [ERROR] upsc-agent: Error analyzing article 'Back to school: Mysuru welcomes students with festive spirit': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 4.231473566s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 4
+}
+]
+2026-06-01 18:51:00,123 [INFO] upsc-agent: Analyzing article: Collector promotes fuel conservation by riding electric bike in Puttaparthi
+2026-06-01 18:51:00,539 [ERROR] upsc-agent: Error analyzing article 'Collector promotes fuel conservation by riding electric bike in Puttaparthi': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 1.823468503s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 1
+}
+]
+2026-06-01 18:51:02,540 [INFO] upsc-agent: Analyzing article: NEET paper leak: Delhi court sends three accused to 14 days’ judicial custody
+2026-06-01 18:51:02,943 [ERROR] upsc-agent: Error analyzing article 'NEET paper leak: Delhi court sends three accused to 14 days’ judicial custody': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 59.425030675s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 59
+}
+]
+2026-06-01 18:51:04,944 [INFO] upsc-agent: Analyzing article: Myanmar assures India its territory won’t be used against New Delhi’s security interests
+2026-06-01 18:51:05,360 [ERROR] upsc-agent: Error analyzing article 'Myanmar assures India its territory won’t be used against New Delhi’s security interests': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 57.002228872s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 57
+}
+]
+2026-06-01 18:51:07,361 [INFO] upsc-agent: Analyzing article: Palaniswami appeals to his party members not to  carry out ‘undesirable and depressing’ acts
+2026-06-01 18:51:07,784 [ERROR] upsc-agent: Error analyzing article 'Palaniswami appeals to his party members not to  carry out ‘undesirable and depressing’ acts': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 54.576431201s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 54
+}
+]
+2026-06-01 18:51:09,785 [INFO] upsc-agent: Analyzing article: Dhinakaran appeals to TVK government to shut down unauthorised bars
+2026-06-01 18:51:10,220 [ERROR] upsc-agent: Error analyzing article 'Dhinakaran appeals to TVK government to shut down unauthorised bars': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 52.139668577s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 52
+}
+]
+2026-06-01 18:51:10,221 [INFO] upsc-agent: Appending 8 new study cards to the daily brief cache...
+2026-06-01 18:51:10,223 [INFO] upsc-agent: Updated cache saved successfully: D:\project\agent\data\brief_2026-06-01.json
+2026-06-01 18:51:10,223 [INFO] upsc-agent: Step 3: Compiling HTML newsletter...
+2026-06-01 18:51:10,223 [INFO] upsc-agent: Dry-run enabled. Saving HTML newsletter to: D:\project\agent\data\test_output.html
+2026-06-02 10:14:44,715 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-06-02 10:14:44,727 [INFO] upsc-agent: Fetching recent news articles...
+2026-06-02 10:14:44,728 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1
+2026-06-02 10:14:46,860 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-06-02 10:14:46,860 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-06-02 10:14:47,340 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-06-02 10:14:47,342 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-06-02 10:14:47,759 [INFO] upsc-agent: Retrieved 11 recent articles from 'The Hindu Opinion'
+2026-06-02 10:14:47,760 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-06-02 10:14:48,119 [INFO] upsc-agent: Retrieved 26 recent articles from 'The Hindu Business'
+2026-06-02 10:14:48,120 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-06-02 10:14:48,540 [INFO] upsc-agent: Retrieved 28 recent articles from 'The Hindu Sci-Tech'
+2026-06-02 10:14:48,541 [INFO] upsc-agent: Total deduplicated news articles fetched: 117
+2026-06-02 10:14:48,541 [INFO] upsc-agent: Fetching verification and curation sources...
+2026-06-02 10:14:48,541 [INFO] upsc-agent: Fetching Insights on India main feed from: https://www.insightsonindia.com/feed/
+2026-06-02 10:14:49,164 [WARNING] upsc-agent: No recent Insights Daily Current Affairs post found in feed.
+2026-06-02 10:14:49,166 [INFO] upsc-agent: Fetching YouTube feed 'StudyIQ UPSC CSE' from: https://www.youtube.com/feeds/videos.xml?channel_id=UCl9HsnUFaRBrkql1Gly6ICQ
+2026-06-02 10:14:50,096 [ERROR] upsc-agent: Failed to fetch YouTube feed for StudyIQ UPSC CSE: Status 500
+2026-06-02 10:14:50,098 [INFO] upsc-agent: Fetching YouTube feed 'PW OnlyIAS' from: https://www.youtube.com/feeds/videos.xml?channel_id=UC4qbM7cBX0xxNbCY2D7rj4A
+2026-06-02 10:14:50,823 [ERROR] upsc-agent: Failed to fetch YouTube feed for PW OnlyIAS: Status 500
+2026-06-02 10:14:50,824 [INFO] upsc-agent: Verification data summary: 0 Insights topics, 0 YouTube topics.
+2026-06-02 10:14:50,824 [INFO] upsc-agent: Processing and analyzing all articles via Gemini...
+2026-06-02 10:14:50,825 [INFO] upsc-agent: No verification data provided. Running standard UPSC news filtering.
+2026-06-02 10:14:50,825 [INFO] upsc-agent: Filtering 117 articles for UPSC relevance...
+2026-06-02 10:15:40,478 [INFO] upsc-agent: Gemini selected 75 / 117 relevant articles.
+2026-06-02 10:15:40,898 [INFO] upsc-agent: Generating UPSC study cards for 8 articles...
+2026-06-02 10:15:40,899 [INFO] upsc-agent: Analyzing article: 388 cells on 2 floors, this Kerala cemetery beats space crunch
+2026-06-02 10:15:41,400 [ERROR] upsc-agent: Error analyzing article '388 cells on 2 floors, this Kerala cemetery beats space crunch': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 21.382623073s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 21
+}
+]
+2026-06-02 10:15:43,401 [INFO] upsc-agent: Analyzing article: Deepak Cables: ED seizes ₹1.27 crore cash and gold, freezes ₹18 crore in ₹899-crore bank fraud case in Bengaluru
+2026-06-02 10:15:43,843 [ERROR] upsc-agent: Error analyzing article 'Deepak Cables: ED seizes ₹1.27 crore cash and gold, freezes ₹18 crore in ₹899-crore bank fraud case in Bengaluru': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 18.880690183s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 18
+}
+]
+2026-06-02 10:15:45,844 [INFO] upsc-agent: Analyzing article: After partial collapse, push to restore Radhakrishnan heritage site in Mysuru
+2026-06-02 10:15:46,450 [ERROR] upsc-agent: Error analyzing article 'After partial collapse, push to restore Radhakrishnan heritage site in Mysuru': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 16.445564867s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 16
+}
+]
+2026-06-02 10:15:48,452 [INFO] upsc-agent: Analyzing article: Notification for polls to fill four Rajya Sabha seats in Karnataka issued
+2026-06-02 10:15:48,886 [ERROR] upsc-agent: Error analyzing article 'Notification for polls to fill four Rajya Sabha seats in Karnataka issued': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 13.865772859s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 13
+}
+]
+2026-06-02 10:15:50,886 [INFO] upsc-agent: Analyzing article: Telangana statehood Day: Committed to supporting State’s growth trajectory, says PM Modi
+2026-06-02 10:15:51,537 [ERROR] upsc-agent: Error analyzing article 'Telangana statehood Day: Committed to supporting State’s growth trajectory, says PM Modi': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 11.394981033s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 11
+}
+]
+2026-06-02 10:15:53,538 [INFO] upsc-agent: Analyzing article: Vizag data centre is a major challenge
+2026-06-02 10:15:53,998 [ERROR] upsc-agent: Error analyzing article 'Vizag data centre is a major challenge': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 8.779534467s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 8
+}
+]
+2026-06-02 10:15:55,999 [INFO] upsc-agent: Analyzing article: Undertrial prisoners entitled to be treated at private hospitals of their choice: Madras High Court
+2026-06-02 10:15:56,416 [ERROR] upsc-agent: Error analyzing article 'Undertrial prisoners entitled to be treated at private hospitals of their choice: Madras High Court': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 6.312812012s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 6
+}
+]
+2026-06-02 10:15:58,417 [INFO] upsc-agent: Analyzing article: Prisons in India continue to be overcrowded by undertrials | Data
+2026-06-02 10:15:58,836 [ERROR] upsc-agent: Error analyzing article 'Prisons in India continue to be overcrowded by undertrials | Data': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 3.889530386s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 3
+}
+]
+2026-06-02 10:15:58,836 [INFO] upsc-agent: Analysis complete. Generated 8 study cards.
+2026-06-02 10:15:58,924 [INFO] upsc-agent: Saved 8 generated study cards to cache: d:\project\agent\data\brief_2026-06-02.json
+2026-06-02 10:15:58,924 [INFO] upsc-agent: Step 3: Compiling HTML newsletter...
+2026-06-02 10:15:58,925 [INFO] upsc-agent: Step 4: Sending email newsletter...
+2026-06-02 10:15:58,925 [INFO] upsc-agent: Preparing to send email to rajramkola786@gmail.com via smtp.gmail.com:587 (attempt 1/3)...
+2026-06-02 10:16:04,028 [INFO] upsc-agent: Email sent successfully!
+2026-06-02 10:16:04,028 [INFO] upsc-agent: Daily agent workflow completed successfully.
+2026-06-02 20:58:41,947 [INFO] upsc-agent: Starting UPSC Current Affairs Agent run...
+2026-06-02 20:58:41,964 [INFO] upsc-agent: Fetching recent news articles...
+2026-06-02 20:58:41,964 [INFO] upsc-agent: Fetching feed 'PIB' from: https://pib.gov.in/RssMain.aspx?ModId=6&Lang=1
+2026-06-02 20:58:42,851 [INFO] upsc-agent: Retrieved 0 recent articles from 'PIB'
+2026-06-02 20:58:42,851 [INFO] upsc-agent: Fetching feed 'The Hindu National' from: https://www.thehindu.com/news/national/feeder/default.rss
+2026-06-02 20:58:43,301 [INFO] upsc-agent: Retrieved 60 recent articles from 'The Hindu National'
+2026-06-02 20:58:43,303 [INFO] upsc-agent: Fetching feed 'The Hindu Opinion' from: https://www.thehindu.com/opinion/feeder/default.rss
+2026-06-02 20:58:43,755 [INFO] upsc-agent: Retrieved 13 recent articles from 'The Hindu Opinion'
+2026-06-02 20:58:43,756 [INFO] upsc-agent: Fetching feed 'The Hindu Business' from: https://www.thehindu.com/business/feeder/default.rss
+2026-06-02 20:58:44,184 [INFO] upsc-agent: Retrieved 23 recent articles from 'The Hindu Business'
+2026-06-02 20:58:44,185 [INFO] upsc-agent: Fetching feed 'The Hindu Sci-Tech' from: https://www.thehindu.com/sci-tech/feeder/default.rss
+2026-06-02 20:58:44,954 [INFO] upsc-agent: Retrieved 26 recent articles from 'The Hindu Sci-Tech'
+2026-06-02 20:58:44,955 [INFO] upsc-agent: Total deduplicated news articles fetched: 115
+2026-06-02 20:58:44,955 [INFO] upsc-agent: Fetching verification and curation sources...
+2026-06-02 20:58:44,956 [INFO] upsc-agent: Fetching Insights on India main feed from: https://www.insightsonindia.com/feed/
+2026-06-02 20:58:45,590 [WARNING] upsc-agent: No recent Insights Daily Current Affairs post found in feed.
+2026-06-02 20:58:45,592 [INFO] upsc-agent: Fetching YouTube feed 'StudyIQ UPSC CSE' from: https://www.youtube.com/feeds/videos.xml?channel_id=UCl9HsnUFaRBrkql1Gly6ICQ
+2026-06-02 20:58:46,689 [INFO] upsc-agent: Retrieved 2 recent video titles from YouTube 'StudyIQ UPSC CSE'
+2026-06-02 20:58:46,691 [INFO] upsc-agent: Fetching YouTube feed 'PW OnlyIAS' from: https://www.youtube.com/feeds/videos.xml?channel_id=UC4qbM7cBX0xxNbCY2D7rj4A
+2026-06-02 20:58:47,716 [INFO] upsc-agent: Retrieved 3 recent video titles from YouTube 'PW OnlyIAS'
+2026-06-02 20:58:47,718 [INFO] upsc-agent: Verification data summary: 0 Insights topics, 5 YouTube topics.
+2026-06-02 20:58:47,718 [INFO] upsc-agent: Processing and analyzing all articles via Gemini...
+2026-06-02 20:58:47,719 [INFO] upsc-agent: Filtering and curating news articles using verification sources...
+2026-06-02 20:58:52,044 [ERROR] upsc-agent: Error during curated news filtering: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 10.497796744s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 10
+}
+]
+2026-06-02 20:58:52,044 [INFO] upsc-agent: Filtering 115 articles for UPSC relevance using taxonomy scoring...
+2026-06-02 20:58:52,493 [ERROR] upsc-agent: Error in UPSC taxonomy filtering stage: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 9.271243892s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 9
+}
+]
+2026-06-02 20:58:52,618 [INFO] upsc-agent: Generating UPSC study cards for 5 articles...
+2026-06-02 20:58:52,618 [INFO] upsc-agent: Analyzing article: Activists, Congress slam RSS-linked task forces for PESA, FRA implementation in MP, Chhattisgarh
+2026-06-02 20:58:52,894 [ERROR] upsc-agent: Error analyzing article 'Activists, Congress slam RSS-linked task forces for PESA, FRA implementation in MP, Chhattisgarh': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 8.907734637s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 8
+}
+]
+2026-06-02 20:59:00,895 [INFO] upsc-agent: Analyzing article: Bengaluru civic bodies convene SIR meeting
+2026-06-02 20:59:06,856 [ERROR] upsc-agent: Error analyzing article 'Bengaluru civic bodies convene SIR meeting': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 54.879084664s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 54
+}
+]
+2026-06-02 20:59:14,857 [INFO] upsc-agent: Analyzing article: Kannada Sahithya Academy to release 54 books on women achievers from Karnataka
+2026-06-02 20:59:15,273 [ERROR] upsc-agent: Error analyzing article 'Kannada Sahithya Academy to release 54 books on women achievers from Karnataka': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 46.462215708s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 46
+}
+]
+2026-06-02 20:59:23,274 [INFO] upsc-agent: Analyzing article: Union Minister Ramdas Athawale defends fuel price hike, says government is aware of public burden
+2026-06-02 20:59:28,862 [ERROR] upsc-agent: Error analyzing article 'Union Minister Ramdas Athawale defends fuel price hike, says government is aware of public burden': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 32.858078611s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 32
+}
+]
+2026-06-02 20:59:36,864 [INFO] upsc-agent: Analyzing article: Monsoon may remain subdued after vigorous onset in Kerala
+2026-06-02 20:59:39,104 [ERROR] upsc-agent: Error analyzing article 'Monsoon may remain subdued after vigorous onset in Kerala': 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 22.613218944s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 22
+}
+]
+2026-06-02 20:59:39,105 [INFO] upsc-agent: Analysis complete. Generated 5 study cards.
+2026-06-02 20:59:39,108 [INFO] upsc-agent: Saved 5 generated study cards to cache: D:\project\agent\data\brief_2026-06-02.json
+2026-06-02 20:59:39,108 [INFO] upsc-agent: Step 3: Compiling HTML newsletter...
+2026-06-02 20:59:39,109 [INFO] upsc-agent: Step 4: Sending email newsletter...
+2026-06-02 20:59:39,110 [INFO] upsc-agent: Preparing to send email to rajramkola786@gmail.com via smtp.gmail.com:587 (attempt 1/3)...
+2026-06-02 20:59:44,499 [INFO] upsc-agent: Email sent successfully!
+2026-06-02 20:59:44,499 [INFO] upsc-agent: Daily agent workflow completed successfully.
