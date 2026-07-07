@@ -5,7 +5,7 @@ import time
 import datetime
 import google.generativeai as genai
 from src.config import GEMINI_API_KEY, GEMINI_MODEL, DATA_DIR, logger
-
+from src.rag import semantic_search_pyqs
 # Initialize Gemini API
 if GEMINI_API_KEY:
     genai.configure(api_key=GEMINI_API_KEY)
@@ -182,7 +182,7 @@ Output format example:
         # Fallback: return first 5 articles
         return articles[:5]
 
-def analyze_article(article, local_pyqs):
+def analyze_article(article):
     """Stage 2: Perform deep UPSC study card analysis on a single article."""
     if not GEMINI_API_KEY:
         # Generate a high-quality mock study card based on keywords
@@ -205,7 +205,7 @@ def analyze_article(article, local_pyqs):
             paper = "GS Paper III"
             subtopic = "Environment and Ecology"
             
-        matching_pyqs = search_related_mains_pyqs(article['title'], article['summary'], local_pyqs)
+        matching_pyqs = semantic_search_pyqs(article['title'] + " " + article['summary'])
         pyq_ref = "None found in local database. In UPSC Prelims, questions on similar lines are frequently asked."
         if matching_pyqs:
             pyq_ref = f"This relates to Mains question from {matching_pyqs[0]['Year']} ({matching_pyqs[0]['Paper']}): '{matching_pyqs[0]['Question']}'"
@@ -242,7 +242,7 @@ def analyze_article(article, local_pyqs):
     logger.info(f"Analyzing article: {article['title']}")
     
     # Find matching PYQs
-    matching_pyqs = search_related_mains_pyqs(article['title'], article['summary'], local_pyqs)
+    matching_pyqs = semantic_search_pyqs(article['title'] + " " + article['summary'])
     
     pyqs_str = "None found in local database."
     if matching_pyqs:
@@ -485,6 +485,51 @@ Example Output:
         logger.error(f"Error during curated news filtering: {e}")
         return filter_upsc_relevant_news(articles)
 
+def evaluate_and_refine_card(card):
+    """Stage 3: Evaluator agent that critiques and refines the generated study card."""
+    if not GEMINI_API_KEY or card.get('error'):
+        return card
+        
+    logger.info(f"Evaluating and refining card: {card['title']}")
+    
+    prompt = f"""You are a strict UPSC CSE Chief Editor and Evaluator. 
+Review the following AI-generated study card for a current affairs topic.
+
+Study Card:
+{json.dumps(card, indent=2)}
+
+Task:
+1. Critique the card for depth, clarity, and UPSC relevance. 
+2. If the 'mains_concepts' are too shallow, add more profound arguments or data points.
+3. If 'prelims_pointers' lack factual density, enhance them.
+4. If 'pyq_connection' is weak, strengthen it.
+5. Return the REFINED study card as a valid JSON object matching the exact original structure.
+Do NOT change the title, link, source, or date.
+Ensure strings are properly escaped. Do not wrap the JSON in ```json ... ``` blocks."""
+
+    try:
+        model = genai.GenerativeModel(GEMINI_MODEL)
+        from src.analyzer import generate_content_with_retry
+        response = generate_content_with_retry(model, prompt)
+        text = response.text.strip()
+        
+        if text.startswith("```"):
+            text = re.sub(r"^```(?:json)?\s*", "", text)
+            text = re.sub(r"\s*```$", "", text)
+            
+        refined_card = json.loads(text.strip(), strict=False)
+        # Preserve original metadata
+        refined_card['link'] = card['link']
+        refined_card['source'] = card['source']
+        refined_card['date'] = card['date']
+        
+        # Add evaluation metadata
+        refined_card['_evaluation_score'] = "High"  # Placeholder, could ask LLM to score
+        return refined_card
+    except Exception as e:
+        logger.error(f"Error evaluating card '{card['title']}': {e}")
+        return card
+
 def analyze_all_news(articles, verification_data=None):
     """Filter news, fetch local PYQs, and run detailed analysis on the relevant articles."""
     relevant_articles = curate_news_with_verification(articles, verification_data)
@@ -495,17 +540,24 @@ def analyze_all_news(articles, verification_data=None):
     local_pyqs = load_local_pyqs()
     cards = []
     
-    # Cap to 5 articles per day — stays well within the free API quota (1 filter call + 5 analysis calls = 6 total)
+    # Cap to 5 articles per day
     max_cards = min(5, len(relevant_articles))
     logger.info(f"Generating UPSC study cards for {max_cards} articles...")
     
     for i in range(max_cards):
         if i > 0:
-            time.sleep(8)  # 8-second pacing buffer to stay well under RPM and daily quota limits
+            time.sleep(8)
+        
+        # Analyze
         card = analyze_article(relevant_articles[i], local_pyqs)
-        # Attach pre-classified topic if available from taxonomy filter
-        if card.get('syllabus_topic') in ('GS Paper I/II/III: Current Affairs', '') and relevant_articles[i].get('_pre_classified'):
-            card['syllabus_topic'] = relevant_articles[i]['_pre_classified']
-        cards.append(card)
+        
+        # Evaluate & Refine (New step)
+        refined_card = evaluate_and_refine_card(card)
+        
+        # Attach pre-classified topic if available
+        if refined_card.get('syllabus_topic') in ('GS Paper I/II/III: Current Affairs', '') and relevant_articles[i].get('_pre_classified'):
+            refined_card['syllabus_topic'] = relevant_articles[i]['_pre_classified']
+            
+        cards.append(refined_card)
         
     return cards

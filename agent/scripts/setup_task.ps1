@@ -9,13 +9,13 @@ if (-not $isAdmin) {
     Write-Warning "This script must be run as Administrator to register scheduled tasks."
     Write-Host "Please open an elevated PowerShell prompt (Run as Administrator) and execute this script again."
     Write-Host "Command to run:"
-    Write-Host "powershell -ExecutionPolicy Bypass -File d:\project\agent\scripts\setup_task.ps1" -ForegroundColor Yellow
+    Write-Host "powershell -ExecutionPolicy Bypass -File d:\project\UPSC-Current-affair-agent\agent\scripts\setup_task.ps1" -ForegroundColor Yellow
     Exit
 }
 
 $taskName = "UPSCDailyAgent"
-$vbsPath   = "d:\project\agent\scripts\run_agent_silent.vbs"
-$batchPath = "d:\project\agent\scripts\run_agent.bat"  # kept for manual use only
+$vbsPath   = "d:\project\UPSC-Current-affair-agent\agent\scripts\run_agent_silent.vbs"
+$batchPath = "d:\project\UPSC-Current-affair-agent\agent\scripts\run_agent.bat"  # kept for manual use only
 
 if (-not (Test-Path $vbsPath)) {
     Write-Error "Could not find run_agent_silent.vbs at $vbsPath. Please ensure the workspace path is correct."

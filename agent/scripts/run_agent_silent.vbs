@@ -7,7 +7,7 @@ Option Explicit
 
 Dim objShell, strProjectDir, strPythonCmd, strLogFile, strCmd
 
-strProjectDir = "d:\project\agent"
+strProjectDir = "d:\project\UPSC-Current-affair-agent\agent"
 strLogFile    = strProjectDir & "\agent_runs.log"
 
 ' Detect pythonw.exe (runs without console) vs python.exe as fallback
