@@ -3,16 +3,17 @@ import os
 import re
 import time
 import datetime
-import google.generativeai as genai
+from google import genai
 from src.config import GEMINI_API_KEY, GEMINI_MODEL, DATA_DIR, logger
 from src.rag import semantic_search_pyqs
 # Initialize Gemini API
+gemini_client = None
 if GEMINI_API_KEY:
-    genai.configure(api_key=GEMINI_API_KEY)
+    gemini_client = genai.Client(api_key=GEMINI_API_KEY)
 else:
     logger.warning("GEMINI_API_KEY environment variable is not set. API calls will fail.")
 
-def generate_content_with_retry(model, prompt, max_retries=5, initial_delay=2):
+def generate_content_with_retry(client, model_name, prompt, max_retries=5, initial_delay=2):
     """Call generate_content with exponential backoff on rate limit/resource exhaustion errors."""
     delay = initial_delay
     for attempt in range(max_retries):
@@ -20,7 +21,7 @@ def generate_content_with_retry(model, prompt, max_retries=5, initial_delay=2):
             if attempt > 0:
                 logger.info(f"Retrying API call in {delay} seconds (attempt {attempt + 1}/{max_retries})...")
                 time.sleep(delay)
-            return model.generate_content(prompt)
+            return client.models.generate_content(model=model_name, contents=prompt)
         except Exception as e:
             err_msg = str(e)
             is_rate_limit = "429" in err_msg or "ResourceExhausted" in err_msg or "quota" in err_msg.lower()
@@ -154,8 +155,7 @@ Output format example:
 {{"scored": [{{"index": 0, "paper": "GS Paper II", "topic": "Indian Polity & Constitution", "score": 8}}, ...], "selected_indices": [0, 3, 5]}}"""
 
     try:
-        model = genai.GenerativeModel(GEMINI_MODEL)
-        response = generate_content_with_retry(model, prompt)
+        response = generate_content_with_retry(gemini_client, GEMINI_MODEL, prompt)
         text = response.text.strip()
         
         if text.startswith("```"):
@@ -278,8 +278,7 @@ You must output a single, valid JSON object containing the following keys (no ma
 Format the output strictly as JSON. Ensure strings are properly escaped. Do not wrap the JSON in ```json ... ``` blocks."""
 
     try:
-        model = genai.GenerativeModel(GEMINI_MODEL)
-        response = generate_content_with_retry(model, prompt)
+        response = generate_content_with_retry(gemini_client, GEMINI_MODEL, prompt)
         text = response.text.strip()
         
         text = text.strip()
@@ -378,8 +377,7 @@ Example Output:
 }}"""
 
     try:
-        model = genai.GenerativeModel(GEMINI_MODEL)
-        response = generate_content_with_retry(model, prompt)
+        response = generate_content_with_retry(gemini_client, GEMINI_MODEL, prompt)
         text = response.text.strip()
         
         if text.startswith("```"):
@@ -508,9 +506,7 @@ Do NOT change the title, link, source, or date.
 Ensure strings are properly escaped. Do not wrap the JSON in ```json ... ``` blocks."""
 
     try:
-        model = genai.GenerativeModel(GEMINI_MODEL)
-        from src.analyzer import generate_content_with_retry
-        response = generate_content_with_retry(model, prompt)
+        response = generate_content_with_retry(gemini_client, GEMINI_MODEL, prompt)
         text = response.text.strip()
         
         if text.startswith("```"):

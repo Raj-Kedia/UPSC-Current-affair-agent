@@ -1,7 +1,9 @@
 import os
 import json
+import time
 import chromadb
-from langchain_core.documents import Document
+
+# pyrefly: ignore [missing-import]
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from src.config import DATA_DIR, GEMINI_API_KEY, logger
 
@@ -14,7 +16,7 @@ def get_embeddings():
     if not GEMINI_API_KEY:
         logger.warning("GEMINI_API_KEY is not set. Cannot use Gemini embeddings.")
         return None
-    return GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=GEMINI_API_KEY)
+    return GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-2", google_api_key=GEMINI_API_KEY)
 
 def load_local_pyqs():
     """Load local mains PYQs database if it exists."""
@@ -66,10 +68,10 @@ def initialize_pyq_vector_store():
                 })
                 ids.append(q_id)
                 
-    # Batch add to avoid limits (Chroma handles this automatically up to a point, but good practice)
-    batch_size = 100
+    # Batch add to avoid limits. Gemini free tier has a strict 100 requests/minute limit.
+    batch_size = 15
     for i in range(0, len(documents), batch_size):
-        logger.info(f"Adding batch {i//batch_size + 1} of PYQs to Vector DB...")
+        logger.info(f"Adding batch {i//batch_size + 1} (of {len(documents)//batch_size + 1}) to Vector DB...")
         batch_docs = documents[i:i+batch_size]
         batch_metadatas = metadatas[i:i+batch_size]
         batch_ids = ids[i:i+batch_size]
@@ -83,11 +85,12 @@ def initialize_pyq_vector_store():
             metadatas=batch_metadatas,
             ids=batch_ids
         )
+        time.sleep(10)  # Sleep 10s after every 15 items to stay under 100 items per 60s limit
         
     logger.info(f"Successfully added {len(documents)} PYQs to Vector DB.")
     return collection
 
-def semantic_search_pyqs(query, max_results=3):
+def semantic_search_pyqs(query, max_results=3): 
     """Search ChromaDB for related questions based on semantic meaning."""
     collection = chroma_client.get_or_create_collection(name="upsc_pyqs")
     if collection.count() == 0:
