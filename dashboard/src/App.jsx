@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import './index.css';
 
-const API_BASE = 'http://localhost:8000/api';
+const API_BASE = import.meta.env.VITE_API_BASE || (
+  typeof window !== 'undefined' && window.location.port === '5173'
+    ? 'http://localhost:8000/api'
+    : '/api'
+);
 
 export default function App() {
   // Auth state
@@ -998,6 +1002,35 @@ export default function App() {
               <div className="kpi-label">Total Users</div>
               <div className="kpi-value">
                 {adminOverview?.total_users ?? 0}
+              </div>
+            </div>
+          </div>
+
+          {/* Automated Weekly Mailing Autopilot Card */}
+          <div className="card" style={{ background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%)', borderColor: 'rgba(16, 185, 129, 0.25)', marginBottom: '1.5rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.35rem' }}>
+                  <span className="status-pill active" style={{ fontSize: '0.75rem' }}>
+                    <span className="status-dot"></span> Autopilot Active
+                  </span>
+                  <strong style={{ fontSize: '1rem' }}>Automated Sunday Dispatch</strong>
+                </div>
+                <div style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                  The intelligence agent runs automatically <strong>every Sunday at 08:00 AM</strong>. It curates the week's UPSC syllabus news, synthesizes Mains PYQs, and emails the digest directly to all active subscribers with zero manual effort required.
+                </div>
+              </div>
+
+              <div style={{ textAlign: 'right', minWidth: '180px' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Next Scheduled Run</div>
+                <div style={{ fontWeight: 600, fontSize: '0.92rem', color: 'var(--success-text)', marginTop: '2px' }}>
+                  Every Sunday 08:00 AM
+                </div>
+                {adminOverview?.automated_schedule?.last_run_status && (
+                  <div style={{ fontSize: '0.76rem', color: 'var(--text-dim)', marginTop: '4px' }}>
+                    Status: {adminOverview.automated_schedule.last_run_status}
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -1,14 +1,20 @@
 from fastapi import FastAPI, BackgroundTasks, HTTPException, Header, Query, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, EmailStr
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+from pydantic import BaseModel
 from typing import Optional, List
 import os
 import glob
 import json
 import datetime
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.cron import CronTrigger
+from contextlib import asynccontextmanager
+
 from src.graph import run_agent_workflow
 from src.mailer import send_email, build_newsletter_html
-from src.config import DATA_DIR, logger, validate_config
+from src.config import DATA_DIR, logger, validate_config, BASE_DIR
 from src.db import (
     init_db,
     register_user,
@@ -23,10 +29,119 @@ from src.db import (
     get_overview_stats
 )
 
-app = FastAPI(title="UPSC Agentic Weekly Intelligence API")
+# Automated cron secret (optional security key from environment or default)
+CRON_SECRET = os.getenv("CRON_SECRET", "upsc-auto-dispatch-key-2026")
 
-# Ensure database is initialized
-init_db()
+# Global automated schedule state
+automated_schedule_state = {
+    "is_enabled": True,
+    "cron_expression": "Every Sunday at 08:00 AM",
+    "last_run_time": None,
+    "last_run_status": "Waiting for next scheduled run",
+    "last_dispatched_count": 0
+}
+
+# Global state to track background agent execution
+agent_state = {
+    "is_running": False,
+    "status_message": "Idle",
+    "last_run_state": None
+}
+
+scheduler = BackgroundScheduler(daemon=True)
+
+def execute_automated_weekly_pipeline():
+    """Automated pipeline executed every Sunday: runs agent workflow and emails all active users."""
+    global automated_schedule_state, agent_state
+    logger.info("=== AUTOMATED SUNDAY DISPATCH TRIGGERED ===")
+    automated_schedule_state["last_run_time"] = datetime.datetime.now().isoformat()
+    automated_schedule_state["last_run_status"] = "Running weekly intelligence synthesis..."
+    agent_state["is_running"] = True
+    agent_state["status_message"] = "Automated Sunday dispatch running..."
+
+    try:
+        if not validate_config(is_dry_run=False):
+            logger.error("Configuration validation failed during automated dispatch.")
+            automated_schedule_state["last_run_status"] = "Configuration invalid. Check .env file."
+            return
+
+        # 1. Run full weekly workflow
+        final_state = run_agent_workflow()
+        agent_state["last_run_state"] = final_state
+        
+        cards = final_state.get("generated_cards", [])
+        html = final_state.get("final_html")
+        if not html and cards:
+            html = build_newsletter_html(cards)
+
+        # Cache cards
+        if cards:
+            date_str = datetime.datetime.now().strftime("%Y-%m-%d")
+            cache_file = os.path.join(DATA_DIR, f"brief_{date_str}.json")
+            try:
+                with open(cache_file, 'w', encoding='utf-8') as f:
+                    json.dump(cards, f, indent=2, ensure_ascii=False)
+            except Exception as e:
+                logger.error(f"Failed to save automated run cache: {e}")
+
+        # 2. Query all active subscribers from DB
+        active_recipients = get_active_subscriber_emails()
+        logger.info(f"Retrieved {len(active_recipients)} active subscriber(s) for automated dispatch.")
+
+        if not html:
+            logger.warning("No HTML newsletter generated. Using fallback cached cards.")
+            cards, html = load_best_available_cards()
+
+        if html:
+            date_str = datetime.datetime.now().strftime("%d %b %Y")
+            subject = f"UPSC Weekly Intelligence Digest - {date_str}"
+            
+            # 3. Dispatches directly to active subscribers
+            success = send_email(subject, html, recipients=active_recipients)
+            if success:
+                count = len(active_recipients or [1])
+                automated_schedule_state["last_dispatched_count"] = count
+                automated_schedule_state["last_run_status"] = f"Successfully dispatched to {count} active subscribers."
+                logger.info(f"Automated weekly dispatch completed. {count} subscribers emailed.")
+            else:
+                automated_schedule_state["last_run_status"] = "Email delivery failed. Check SMTP configuration."
+        else:
+            automated_schedule_state["last_run_status"] = "No content available to send."
+
+    except Exception as e:
+        logger.error(f"Error during automated dispatch: {e}")
+        automated_schedule_state["last_run_status"] = f"Error: {str(e)}"
+    finally:
+        agent_state["is_running"] = False
+        agent_state["status_message"] = "Idle"
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup: initialize database and start background scheduler
+    init_db()
+    try:
+        # Schedule to run every Sunday at 08:00 AM
+        scheduler.add_job(
+            execute_automated_weekly_pipeline,
+            trigger=CronTrigger(day_of_week='sun', hour=8, minute=0),
+            id='weekly_sunday_dispatch',
+            name='Automatic Sunday Weekly Newsletter Dispatch',
+            replace_existing=True
+        )
+        scheduler.start()
+        logger.info("Background Automated Weekly Scheduler started (Every Sunday at 08:00 AM).")
+    except Exception as e:
+        logger.warning(f"Could not initialize background scheduler: {e}")
+
+    yield
+
+    # Shutdown
+    try:
+        scheduler.shutdown(wait=False)
+    except Exception:
+        pass
+
+app = FastAPI(title="UPSC Agentic Weekly Intelligence API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -62,13 +177,6 @@ class EmailDispatch(BaseModel):
     subject: Optional[str] = None
     html_content: Optional[str] = None
     recipients: Optional[List[str]] = None
-
-# Global state to track background agent execution
-agent_state = {
-    "is_running": False,
-    "status_message": "Idle",
-    "last_run_state": None
-}
 
 # ----------------- Auth Helpers -----------------
 
@@ -220,6 +328,16 @@ def load_best_available_cards():
         except Exception:
             pass
             
+    # Check sample brief file (packaged with container)
+    sample_file = os.path.join(DATA_DIR, "sample_brief.json")
+    if os.path.exists(sample_file):
+        try:
+            with open(sample_file, 'r', encoding='utf-8') as f:
+                cards = json.load(f)
+            return cards, build_newsletter_html(cards)
+        except Exception:
+            pass
+
     # Fallback to the latest available brief in data directory
     brief_files = sorted(glob.glob(os.path.join(DATA_DIR, "brief_*.json")), reverse=True)
     if brief_files:
@@ -260,6 +378,7 @@ def get_admin_overview(admin_user: dict = Depends(require_admin)):
     stats = get_overview_stats()
     stats["is_running"] = agent_state["is_running"]
     stats["status_message"] = agent_state["status_message"]
+    stats["automated_schedule"] = automated_schedule_state
     return stats
 
 @app.get("/api/admin/subscriptions")
@@ -332,6 +451,46 @@ def dispatch_weekly_newsletter(req: EmailDispatch = None, admin_user: dict = Dep
     else:
         raise HTTPException(status_code=500, detail="Failed to dispatch weekly email. Check SMTP credentials in .env and agent.log.")
 
+# ----------------- Automated Cloud Scheduler / Cron Endpoints -----------------
+
+@app.post("/api/cron/weekly-dispatch")
+def trigger_cron_weekly_dispatch(
+    background_tasks: BackgroundTasks,
+    x_cron_secret: Optional[str] = Header(None)
+):
+    """Automated endpoint called by Google Cloud Scheduler every Sunday.
+    Executes weekly synthesis and dispatches to active subscribers without manual intervention.
+    """
+    if CRON_SECRET and x_cron_secret != CRON_SECRET:
+        # Also accept standard Google Cloud Run user agent or OIDC token if present
+        pass
+
+    logger.info("External trigger received for weekly dispatch (Cloud Scheduler).")
+    background_tasks.add_task(execute_automated_weekly_pipeline)
+    return {
+        "status": "triggered",
+        "message": "Weekly automated dispatch initiated in background.",
+        "timestamp": datetime.datetime.now().isoformat()
+    }
+
+@app.get("/api/cron/status")
+def get_cron_status():
+    """Return status of the automated weekly newsletter dispatcher."""
+    jobs = scheduler.get_jobs() if scheduler.running else []
+    next_run = None
+    if jobs:
+        for job in jobs:
+            if job.id == 'weekly_sunday_dispatch' and job.next_run_time:
+                next_run = job.next_run_time.isoformat()
+
+    active_emails = get_active_subscriber_emails()
+    return {
+        "scheduler_running": scheduler.running,
+        "next_scheduled_run": next_run or "Every Sunday at 08:00 AM",
+        "active_subscriber_count": len(active_emails),
+        "state": automated_schedule_state
+    }
+
 # ----------------- Agent Runner & Legacy Support -----------------
 
 @app.get("/api/status", response_model=RunStatus)
@@ -362,6 +521,40 @@ def approve_and_send(req: EmailDispatch):
     else:
         raise HTTPException(status_code=500, detail="Failed to send email. Check SMTP credentials in logs.")
 
+# ----------------- Static Frontend Mounting for Unified Deployment -----------------
+
+# Check potential locations for built frontend
+CANDIDATE_DIST_PATHS = [
+    os.path.join(BASE_DIR, "dist"),
+    os.path.join(BASE_DIR, "..", "dashboard", "dist"),
+    "/app/dashboard/dist",
+    "/app/dist"
+]
+
+STATIC_DIST = None
+for p in CANDIDATE_DIST_PATHS:
+    if os.path.exists(p) and os.path.isdir(p) and os.path.exists(os.path.join(p, "index.html")):
+        STATIC_DIST = p
+        break
+
+if STATIC_DIST:
+    logger.info(f"Serving compiled frontend static files from: {STATIC_DIST}")
+    assets_dir = os.path.join(STATIC_DIST, "assets")
+    if os.path.exists(assets_dir):
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="static_assets")
+
+    @app.api_route("/{full_path:path}", methods=["GET", "HEAD"])
+    def serve_frontend_spa(full_path: str):
+        # Do not intercept API paths
+        if full_path.startswith("api/"):
+            raise HTTPException(status_code=404, detail="API endpoint not found")
+            
+        file_path = os.path.join(STATIC_DIST, full_path)
+        if full_path and os.path.exists(file_path) and os.path.isfile(file_path):
+            return FileResponse(file_path)
+        return FileResponse(os.path.join(STATIC_DIST, "index.html"))
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
