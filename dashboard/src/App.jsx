@@ -366,13 +366,6 @@ export default function App() {
     }
   };
 
-  // Fill quick demo credentials
-  const fillDemoAdmin = () => {
-    setAuthEmail('admin@upscagent.com');
-    setAuthPassword('admin123');
-    setAuthMode('login');
-  };
-
   // User Weekly Newsletter Request
   const handleRequestWeeklyNewsletter = async (e) => {
     e.preventDefault();
@@ -761,23 +754,6 @@ export default function App() {
                     )}
                   </button>
                 </form>
-
-                <div className="auth-notice">
-                  <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Demo Admin Credentials:</div>
-                  <div>Email: <code>mailagent202@gmail.com</code> | Password: <code>UPSCAdmin2026!</code></div>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setAuthEmail('mailagent202@gmail.com');
-                      setAuthPassword('UPSCAdmin2026!');
-                      setAuthMode('login');
-                    }}
-                    className="btn btn-secondary btn-sm"
-                    style={{ marginTop: '0.5rem', width: '100%' }}
-                  >
-                    Auto-Fill Admin Credentials
-                  </button>
-                </div>
               </>
             )}
           </div>
