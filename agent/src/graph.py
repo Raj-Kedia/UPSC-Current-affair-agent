@@ -18,10 +18,10 @@ class AgentState(TypedDict):
     status_message: str
 
 def fetch_news_node(state: AgentState):
-    """Node: Fetches raw news from various sources."""
-    logger.info("LangGraph Node: fetch_news_node")
-    articles = fetch_all_recent_news(max_hours=24)
-    return {"raw_articles": articles, "status_message": f"Fetched {len(articles)} raw articles."}
+    """Node: Fetches raw news from various sources for weekly digest (last 7 days)."""
+    logger.info("LangGraph Node: fetch_news_node (Weekly cadence, 168 hours)")
+    articles = fetch_all_recent_news(max_hours=168)
+    return {"raw_articles": articles, "status_message": f"Fetched {len(articles)} raw articles for weekly review."}
 
 def fetch_verification_node(state: AgentState):
     """Node: Fetches verification data (Insights, YouTube)."""

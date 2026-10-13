@@ -24,6 +24,8 @@ agent/agent_runs.log
 agent/data/brief_*.json
 agent/data/test_output.html
 agent/data/chroma_db/
+agent/data/*.db
+*.sqlite
 
 # Keep the PYQ file if it is manually curated; remove below line if it's generated
 # agent/data/upsc_mains_pyqs.json

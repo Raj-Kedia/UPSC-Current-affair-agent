@@ -143,8 +143,8 @@ def format_card_to_html(card):
     """
     return html
 
-def build_newsletter_html(cards):
-    """Compile all cards into a single beautiful HTML email newsletter."""
+def build_newsletter_html(cards, week_label=None):
+    """Compile all cards into a single beautiful HTML email newsletter for the weekly edition."""
     cards_html = ""
     for card in cards:
         cards_html += format_card_to_html(card)
@@ -152,12 +152,15 @@ def build_newsletter_html(cards):
     if not cards:
         cards_html = """
         <div style="text-align: center; padding: 40px; color: #64748b; font-family: sans-serif;">
-            <p style="font-size: 16px; margin-bottom: 8px;">No major UPSC-relevant news updates occurred in the last 24 hours.</p>
-            <p style="font-size: 14px;">We will check again tomorrow morning!</p>
+            <p style="font-size: 16px; margin-bottom: 8px;">No major UPSC-relevant news updates occurred during this weekly review cycle.</p>
+            <p style="font-size: 14px;">Next weekly digest will compile upcoming issues!</p>
         </div>
         """
         
-    date_str = datetime.datetime.now().strftime("%B %d, %Y")
+    if not week_label:
+        today = datetime.datetime.now()
+        start_of_week = today - datetime.timedelta(days=7)
+        week_label = f"{start_of_week.strftime('%b %d')} – {today.strftime('%b %d, %Y')}"
     
     # List of motivational quotes for UPSC aspirants
     quotes = [
@@ -176,7 +179,7 @@ def build_newsletter_html(cards):
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>UPSC Current Affairs Daily Newsletter</title>
+        <title>UPSC CSE Weekly Digest</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     </head>
     <body style="margin: 0; padding: 0; background-color: #f3f4f6; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;">
@@ -189,12 +192,12 @@ def build_newsletter_html(cards):
                         <!-- Header -->
                         <tr>
                             <td style="background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%); border-radius: 12px 12px 0 0; padding: 35px 30px; text-align: center; border-bottom: 4px solid #fbbf24;">
-                                <h1 style="margin: 0; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: 0.5px;">UPSC CSE Daily Brief</h1>
+                                <h1 style="margin: 0; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: 0.5px;">UPSC CSE Weekly Digest</h1>
                                 <p style="margin: 8px 0 0 0; color: #cbd5e1; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 2px;">
-                                    Current Affairs Analysis & PYQ Synthesis
+                                    Weekly Current Affairs Analysis & Mains PYQ Synthesis
                                 </p>
                                 <div style="display: inline-block; background-color: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 15px; margin-top: 15px;">
-                                    📅 {date_str}
+                                    📅 Week of {week_label}
                                 </div>
                             </td>
                         </tr>
@@ -213,9 +216,9 @@ def build_newsletter_html(cards):
                                     "{quote}"
                                 </p>
                                 <div style="border-top: 1px solid #334155; padding-top: 15px; margin-top: 15px; font-size: 11px; line-height: 1.5;">
-                                    This email is generated automatically by your UPSC Agent.<br>
-                                    Sent to: <span style="color: #f1f5f9; font-weight: 600;">{get_recipient_display(RECEIVER_EMAIL)}</span><br>
-                                    If you want to adjust settings or feeds, modify the configurations in your local environment.
+                                    This weekly newsletter is synthesized and dispatched by your UPSC AI Intelligence Agent.<br>
+                                    Sent to registered active subscribers.<br>
+                                    To manage your weekly delivery preferences, log into your UPSC Agent dashboard.
                                 </div>
                             </td>
                         </tr>
@@ -229,37 +232,47 @@ def build_newsletter_html(cards):
     """
     return html
 
-def send_email(subject, html_content, max_retries=3, retry_delay=15):
-    """Send an HTML email to the receiver address(es), with retry logic for robust delivery."""
+def send_email(subject, html_content, recipients=None, max_retries=3, retry_delay=15):
+    """Send an HTML email to target recipients, falling back to active DB subscribers or RECEIVER_EMAIL."""
     if not SMTP_USER or not SMTP_PASSWORD:
         logger.error("SMTP credentials are not configured. Cannot send email.")
         return False
         
-    if not RECEIVER_EMAIL:
-        logger.error("RECEIVER_EMAIL is not set. Cannot send email.")
+    target_recipients = []
+    if recipients:
+        if isinstance(recipients, str):
+            target_recipients = [e.strip() for e in recipients.split(',') if e.strip()]
+        elif isinstance(recipients, list):
+            target_recipients = [e.strip() for e in recipients if e.strip()]
+            
+    if not target_recipients:
+        # Check active database subscribers
+        try:
+            from src.db import get_active_subscriber_emails
+            active_emails = get_active_subscriber_emails()
+            if active_emails:
+                target_recipients = active_emails
+        except Exception as e:
+            logger.warning(f"Could not fetch active subscribers from DB: {e}")
+            
+    if not target_recipients and RECEIVER_EMAIL:
+        target_recipients = [e.strip() for e in RECEIVER_EMAIL.split(',') if e.strip()]
+        
+    if not target_recipients:
+        logger.error("No valid receiver email addresses found (neither provided, in DB, nor in RECEIVER_EMAIL).")
         return False
         
-    # Split comma-separated emails and strip whitespace
-    recipients = [email.strip() for email in RECEIVER_EMAIL.split(',') if email.strip()]
-    if not recipients:
-        logger.error("No valid receiver email addresses found in RECEIVER_EMAIL.")
-        return False
-        
+    # Deduplicate recipients
+    target_recipients = list(dict.fromkeys(target_recipients))
+    
     for attempt in range(max_retries):
         if attempt > 0:
             logger.info(f"Retrying email dispatch in {retry_delay} seconds (attempt {attempt + 1}/{max_retries})...")
             time.sleep(retry_delay)
             
-        logger.info(f"Preparing to send email to {', '.join(recipients)} via {SMTP_HOST}:{SMTP_PORT} (attempt {attempt + 1}/{max_retries})...")
+        logger.info(f"Preparing to send weekly digest to {len(target_recipients)} recipient(s): {', '.join(target_recipients)} via {SMTP_HOST}:{SMTP_PORT} (attempt {attempt + 1}/{max_retries})...")
         
         try:
-            # Create message
-            msg = MIMEMultipart('alternative')
-            msg['Subject'] = subject
-            msg['From'] = SMTP_USER
-            msg['To'] = ", ".join(recipients)
-            msg.attach(MIMEText(html_content, 'html'))
-            
             # Connect to SMTP server
             server = smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=30)
             server.ehlo()
@@ -267,10 +280,19 @@ def send_email(subject, html_content, max_retries=3, retry_delay=15):
             server.ehlo()
             server.login(SMTP_USER, SMTP_PASSWORD)
             
-            # Send
-            server.sendmail(SMTP_USER, recipients, msg.as_string())
+            # Send to each recipient individually so recipients don't expose each other's emails
+            sent_count = 0
+            for recipient in target_recipients:
+                msg = MIMEMultipart('alternative')
+                msg['Subject'] = subject
+                msg['From'] = SMTP_USER
+                msg['To'] = recipient
+                msg.attach(MIMEText(html_content, 'html'))
+                server.sendmail(SMTP_USER, [recipient], msg.as_string())
+                sent_count += 1
+                
             server.quit()
-            logger.info("Email sent successfully!")
+            logger.info(f"Weekly newsletter sent successfully to {sent_count} subscriber(s)!")
             return True
         except Exception as e:
             logger.error(f"Failed to send email on attempt {attempt + 1}: {e}")

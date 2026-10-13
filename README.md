@@ -1,45 +1,49 @@
-# AI-Powered Current Affairs Intelligence System
+# AI-Powered UPSC Current Affairs Intelligence System
 
-Built an AI-powered news intelligence system using LangGraph, ChromaDB, Gemini, and FastAPI to automate retrieval, semantic PYQ mapping, evaluation, and daily newsletter generation through a multi-stage workflow.
+Built an AI-powered news intelligence system using LangGraph, ChromaDB, Gemini, and FastAPI to automate retrieval, semantic PYQ mapping, evaluation, and **weekly newsletter delivery** through a multi-stage workflow, paired with a minimalist React dashboard and custom admin management panel.
 
 ![Dashboard Preview](assets/dashboard.png)
 
 ## 🌟 Features
 
-- **Multi-Stage Orchestration**: Powered by LangGraph. Distinct agent nodes for Fetching, Curating, Analyzing, Evaluating, and Formatting with conditional routing (e.g. skips analysis if no relevant news is curated).
-- **RAG & Vector Database (ChromaDB)**: Initializes a local ChromaDB instance that ingests 10+ years of Mains PYQs. Uses Gemini Embeddings to perform semantic searches, systematically mapping daily news to historical syllabus trends.
-- **Self-Critique & Evaluation**: A specialized Evaluator step reviews generated study cards for depth and factual density, refining them before finalizing. Concurrent LLM execution ensures rapid processing.
-- **Interactive Web Dashboard**: A sleek, dynamic React/Vite dashboard to monitor the agents, view generated cards, and manually approve the daily newsletter dispatch.
-- **Automated SMTP Dispatch**: Beautiful HTML newsletter delivery with smart caching and retry mechanisms.
+- **Weekly Current Affairs Cadence**: Synthesizes a comprehensive weekly digest every week instead of daily noise, mapping 7 days of high-yield news directly to GS Papers (I–IV).
+- **Aspirant Registration & Login**: Users can register and log in to manage their weekly newsletter subscription and track activation status in real-time.
+- **Sample Weekly Newsletter**: Logged-in and prospective aspirants can explore sample weekly study cards (with search and GS Paper filtering) and preview the exact rendered HTML email newsletter.
+- **Custom Admin Panel**: Dedicated administration console for managing user activation requests, accepting/activating plans, cancelling plans, reactivating subscriptions, and triggering bulk weekly dispatches.
+- **Multi-Stage Orchestration**: Powered by LangGraph. Distinct agent nodes for Fetching (168-hour weekly window), Curating, Analyzing, Evaluating, and Formatting with conditional routing.
+- **RAG & Vector Database (ChromaDB)**: Ingests 10+ years of Mains PYQs. Uses Gemini Embeddings to perform semantic searches, systematically mapping weekly news to historical syllabus trends.
+- **Automated SMTP Dispatch**: Beautiful responsive HTML weekly newsletter delivery to all active subscribers with retry mechanisms and individual recipient dispatch.
 
 ## 🛠️ Technologies Used
 
-- **Backend**: Python, FastAPI, LangGraph, BeautifulSoup, RSS, ThreadPoolExecutor
+- **Backend**: Python, FastAPI, SQLite, LangGraph, BeautifulSoup, RSS, ThreadPoolExecutor
 - **AI & Data**: Gemini API, ChromaDB (Vector Search)
-- **Frontend**: React, Vite, Vanilla CSS
-- **Delivery**: SMTP
+- **Frontend**: React, Vite, Minimalist Vanilla CSS
+- **Delivery**: SMTP (Multi-recipient individualized dispatch)
 
 ## 🏗️ Architecture Flow
 
 ```mermaid
 graph TD
-    A[Cron / Dashboard Trigger] --> B(Fetch News Agent)
+    A[Weekly Trigger / Admin Dispatch] --> B(Fetch Weekly News Node - 168h)
     B --> C(Verification Agent)
     C --> D(Deduplication & Curation Node)
     D --> E(RAG & PYQ Search)
     E --> F(Analyzer Agent)
     F --> G(Evaluator & Critique Agent)
-    G --> H(Newsletter Generator)
-    H --> I[Dashboard Approval]
-    I --> J[SMTP Dispatch]
+    G --> H(Weekly Newsletter Generator)
+    H --> I[Admin Approval & Subscriber Dispatch]
+    I --> J[Individualized SMTP Dispatch to Active Users]
     
     subgraph Data Stores
     K[(ChromaDB Vector Store)]
     L[(Local Cache JSON)]
+    M[(SQLite Users & Subscriptions DB)]
     end
     
     E -.-> K
     H -.-> L
+    I -.-> M
 ```
 
 ## 📂 Folder Structure
@@ -47,20 +51,21 @@ graph TD
 ```
 UPSC-Current-affair-agent/
 ├── agent/                  # Python Backend (LangGraph, FastAPI)
-│   ├── api.py              # FastAPI server
+│   ├── api.py              # FastAPI server (Auth, Admin, Subscriptions, Dispatch)
 │   ├── src/
-│   │   ├── graph.py        # LangGraph State Machine
+│   │   ├── db.py           # SQLite user authentication & subscription management
+│   │   ├── graph.py        # LangGraph State Machine (Weekly cadence)
 │   │   ├── rag.py          # ChromaDB & Vector Search
 │   │   ├── analyzer.py     # Analyzer & Evaluator Agents
-│   │   ├── fetcher.py      # RSS & Web Fetching logic
-│   │   ├── mailer.py       # SMTP Dispatch
+│   │   ├── fetcher.py      # RSS & Web Fetching logic (168-hour weekly window)
+│   │   ├── mailer.py       # Weekly HTML newsletter generator & SMTP Dispatch
 │   │   └── config.py       # Configuration management
-│   ├── data/               # Local cache & JSON datasets
+│   ├── data/               # Local cache, briefs, & SQLite DB
 │   └── requirements.txt
-├── dashboard/              # React / Vite Frontend
+├── dashboard/              # React / Vite Minimalist Frontend
 │   ├── src/
-│   │   ├── App.jsx         # Main Dashboard UI
-│   │   └── index.css       # Premium styling & dark mode
+│   │   ├── App.jsx         # Minimalist UI: Auth, User Portal, Sample & Admin Panel
+│   │   └── index.css       # Minimalist design system
 │   └── package.json
 └── README.md
 ```

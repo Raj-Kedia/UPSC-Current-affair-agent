@@ -52,13 +52,13 @@ def run_test_email():
     else:
         print("Error: Failed to send test email. Check the agent.log file for error details.")
 
-def run_daily_agent(is_dry_run=False, force_refresh=False):
-    """Run the complete agent workflow: fetch, curate, analyze, format, and mail/save."""
+def run_weekly_agent(is_dry_run=False, force_refresh=False):
+    """Run the complete agent workflow: fetch weekly news, curate, analyze, format, and mail/save."""
     if not validate_config(is_dry_run=is_dry_run):
         print("Configuration validation failed. Please check your .env file settings.")
         sys.exit(1)
         
-    logger.info("Starting UPSC Current Affairs Agent run...")
+    logger.info("Starting UPSC Weekly Intelligence Agent run (168-hour review cycle)...")
     
     # Setup cache file
     date_str_file = datetime.datetime.now().strftime("%Y-%m-%d")
@@ -67,7 +67,7 @@ def run_daily_agent(is_dry_run=False, force_refresh=False):
     cached_cards = []
     
     if os.path.exists(cache_file) and not force_refresh:
-        logger.info(f"Loading cached UPSC study cards from {cache_file} for today...")
+        logger.info(f"Loading cached UPSC study cards from {cache_file} for this week...")
         try:
             with open(cache_file, 'r', encoding='utf-8') as f:
                 cached_cards = json.load(f)
@@ -76,9 +76,9 @@ def run_daily_agent(is_dry_run=False, force_refresh=False):
             logger.error(f"Error reading cache file: {e}. Will regenerate.")
             cached_cards = []
             
-    # Always fetch latest news and verification data to check for updates/additions
-    logger.info("Fetching recent news articles...")
-    articles = fetch_all_recent_news(max_hours=24)
+    # Always fetch latest weekly news and verification data
+    logger.info("Fetching weekly news articles (last 7 days / 168 hours)...")
+    articles = fetch_all_recent_news(max_hours=168)
     
     logger.info("Fetching verification and curation sources...")
     verification_data = fetch_verification_data()
@@ -111,7 +111,7 @@ def run_daily_agent(is_dry_run=False, force_refresh=False):
             new_cards = analyze_all_news(new_articles, new_verification_data)
             
             if new_cards:
-                logger.info(f"Appending {len(new_cards)} new study cards to the daily brief cache...")
+                logger.info(f"Appending {len(new_cards)} new study cards to the weekly brief cache...")
                 cached_cards.extend(new_cards)
                 try:
                     with open(cache_file, 'w', encoding='utf-8') as f:
@@ -127,7 +127,7 @@ def run_daily_agent(is_dry_run=False, force_refresh=False):
         cards = cached_cards
     else:
         # Full generation mode (cache doesn't exist or --force is set)
-        logger.info("Processing and analyzing all articles via Gemini...")
+        logger.info("Processing and analyzing weekly articles via Gemini...")
         cards = analyze_all_news(articles, verification_data)
         logger.info(f"Analysis complete. Generated {len(cards)} study cards.")
         
@@ -140,7 +140,7 @@ def run_daily_agent(is_dry_run=False, force_refresh=False):
                 logger.error(f"Error saving to cache file: {e}")
                 
     # 3. Format
-    logger.info("Step 3: Compiling HTML newsletter...")
+    logger.info("Step 3: Compiling Weekly HTML newsletter...")
     html_content = build_newsletter_html(cards)
     
     # 4. Dispatch/Save
@@ -151,25 +151,28 @@ def run_daily_agent(is_dry_run=False, force_refresh=False):
             f.write(html_content)
         print("\n" + "="*70)
         print("DRY-RUN SUCCESSFUL!")
-        print(f"The generated UPSC Daily Brief newsletter has been saved locally to:")
+        print(f"The generated UPSC Weekly Brief newsletter has been saved locally to:")
         print(f" -> {output_file}")
         print("You can double-click this file to open and preview it in a browser.")
         print("="*70 + "\n")
     else:
         date_str = datetime.datetime.now().strftime("%d %b %Y")
-        subject = f"UPSC Daily Brief - {date_str}"
-        logger.info("Step 4: Sending email newsletter...")
+        subject = f"UPSC Weekly Intelligence Digest - {date_str}"
+        logger.info("Step 4: Sending weekly newsletter to subscribers...")
         success = send_email(subject, html_content)
         if success:
-            logger.info("Daily agent workflow completed successfully.")
+            logger.info("Weekly agent workflow completed successfully.")
         else:
-            logger.error("Daily agent workflow completed, but email dispatch failed.")
+            logger.error("Weekly agent workflow completed, but email dispatch failed.")
+
+# Backward compatibility alias
+run_daily_agent = run_weekly_agent
 
 def main():
-    parser = argparse.ArgumentParser(description="UPSC Daily Current Affairs AI Agent")
+    parser = argparse.ArgumentParser(description="UPSC Weekly Current Affairs AI Agent")
     parser.add_argument('--dry-run', action='store_true', help="Run fetch & analysis, then save to a local HTML file without emailing.")
     parser.add_argument('--test-email', action='store_true', help="Send a simple test email to verify SMTP connection.")
-    parser.add_argument('--force', action='store_true', help="Force refresh and bypass cache for today's brief.")
+    parser.add_argument('--force', action='store_true', help="Force refresh and bypass cache for this week's brief.")
     args = parser.parse_args()
     
     # Check that .env file exists
@@ -181,7 +184,7 @@ def main():
     if args.test_email:
         run_test_email()
     else:
-        run_daily_agent(is_dry_run=args.dry_run, force_refresh=args.force)
+        run_weekly_agent(is_dry_run=args.dry_run, force_refresh=args.force)
 
 if __name__ == '__main__':
     main()
