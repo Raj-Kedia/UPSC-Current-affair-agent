@@ -298,3 +298,79 @@ def send_email(subject, html_content, recipients=None, max_retries=3, retry_dela
             logger.error(f"Failed to send email on attempt {attempt + 1}: {e}")
             if attempt == max_retries - 1:
                 return False
+
+def send_verification_email(recipient_email: str, recipient_name: str, verification_token: str, app_base_url: str = None) -> bool:
+    """Send an account verification email with a secure link to the user."""
+    base_url = app_base_url or "https://upsc-digest-me3vk4muia-uc.a.run.app"
+    verify_link = f"{base_url.rstrip('/')}/?verify_token={verification_token}"
+    
+    subject = "Verify your email address - UPSC Intelligence Agent"
+    
+    html_content = f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Verify Your Email</title>
+    </head>
+    <body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8fafc; padding: 40px 15px;">
+        <tr>
+          <td align="center">
+            <table width="560" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.04); overflow: hidden; max-width: 560px; width: 100%;">
+              <!-- Header -->
+              <tr>
+                <td style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 32px 30px; text-align: center;">
+                  <div style="display: inline-block; width: 48px; height: 48px; line-height: 48px; background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 12px; font-size: 24px; text-align: center; margin-bottom: 12px;">🇮🇳</div>
+                  <h1 style="color: #ffffff; font-size: 22px; margin: 0; font-weight: 700; letter-spacing: -0.02em;">UPSC Intelligence Agent</h1>
+                  <p style="color: #94a3b8; font-size: 13px; margin: 6px 0 0 0; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;">Account Verification</p>
+                </td>
+              </tr>
+              <!-- Content -->
+              <tr>
+                <td style="padding: 36px 32px;">
+                  <h2 style="font-size: 18px; color: #0f172a; margin: 0 0 16px 0; font-weight: 600;">Welcome, {recipient_name}!</h2>
+                  <p style="font-size: 14px; line-height: 1.6; color: #475569; margin: 0 0 24px 0;">
+                    Thank you for signing up for the <strong>UPSC Current Affairs Intelligence Agent</strong>. Please verify your email address to activate your account and start receiving weekly syllabus-mapped digests.
+                  </p>
+                  
+                  <!-- Button CTA -->
+                  <div style="text-align: center; margin: 32px 0;">
+                    <a href="{verify_link}" style="display: inline-block; background: #2563eb; color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-weight: 600; font-size: 15px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);">
+                      Verify My Email Address
+                    </a>
+                  </div>
+
+                  <p style="font-size: 13px; line-height: 1.6; color: #64748b; margin: 24px 0 8px 0;">
+                    Or copy and paste this verification URL into your browser:
+                  </p>
+                  <p style="font-size: 12px; color: #2563eb; background: #f1f5f9; padding: 10px 14px; border-radius: 6px; word-break: break-all; margin: 0 0 24px 0;">
+                    <a href="{verify_link}" style="color: #2563eb; text-decoration: none;">{verify_link}</a>
+                  </p>
+                  
+                  <div style="border-top: 1px solid #f1f5f9; padding-top: 20px; margin-top: 24px;">
+                    <p style="font-size: 12px; color: #94a3b8; margin: 0; line-height: 1.5;">
+                      ⏰ This verification link is valid for 24 hours.<br>
+                      If you did not sign up for this account, you can safely ignore this email.
+                    </p>
+                  </div>
+                </td>
+              </tr>
+              <!-- Footer -->
+              <tr>
+                <td style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; padding: 18px 30px; text-align: center;">
+                  <p style="color: #94a3b8; font-size: 11px; margin: 0;">
+                    UPSC Weekly Intelligence Digest • Automated Agentic Delivery
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+    </html>
+    """
+
+    return send_email(subject, html_content, recipients=[recipient_email])
+

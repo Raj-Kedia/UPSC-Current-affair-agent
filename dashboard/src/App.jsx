@@ -29,6 +29,9 @@ export default function App() {
   const [authPassword, setAuthPassword] = useState('');
   const [authError, setAuthError] = useState('');
   const [authLoading, setAuthLoading] = useState(false);
+  const [verificationBanner, setVerificationBanner] = useState(null);
+  const [registeredEmailPending, setRegisteredEmailPending] = useState(null);
+  const [resendStatus, setResendStatus] = useState(null);
 
   // User subscription state
   const [subscription, setSubscription] = useState(null);
@@ -152,6 +155,17 @@ export default function App() {
       fetchUserProfile(token);
     }
 
+    // Check for email verification token in URL
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const vToken = params.get('verify_token') || params.get('token');
+      if (vToken) {
+        verifyUserFromToken(vToken);
+      }
+    } catch (e) {
+      console.error('URL parse error:', e);
+    }
+
     const interval = setInterval(() => {
       fetchStatus();
       if (user?.role === 'admin' && activeTab === 'admin') {
@@ -161,6 +175,63 @@ export default function App() {
 
     return () => clearInterval(interval);
   }, [token, activeTab]);
+
+  // Verify email token received from email link
+  const verifyUserFromToken = async (vToken) => {
+    setVerificationBanner({ type: 'info', message: 'Verifying your email address, please wait...' });
+    try {
+      const res = await fetch(`${API_BASE}/auth/verify?token=${encodeURIComponent(vToken)}`);
+      const data = await res.json();
+      if (res.ok) {
+        localStorage.setItem('upsc_token', data.token);
+        localStorage.setItem('upsc_user', JSON.stringify(data.user));
+        setToken(data.token);
+        setUser(data.user);
+        setRequestEmail(data.user.email);
+        setVerificationBanner({ 
+          type: 'success', 
+          message: '🎉 Email verified successfully! Welcome aboard. You are now logged in.' 
+        });
+        window.history.replaceState({}, document.title, window.location.pathname);
+        setActiveTab(data.user.role === 'admin' ? 'admin' : 'subscription');
+      } else {
+        setVerificationBanner({ 
+          type: 'error', 
+          message: data.detail || 'The verification link is invalid or has expired.' 
+        });
+      }
+    } catch {
+      setVerificationBanner({ 
+        type: 'error', 
+        message: 'Could not connect to the verification server.' 
+      });
+    }
+  };
+
+  // Resend verification email
+  const handleResendVerification = async (targetEmail) => {
+    const emailToSend = targetEmail || authEmail || registeredEmailPending;
+    if (!emailToSend) {
+      setAuthError('Please enter your email to resend verification.');
+      return;
+    }
+    setResendStatus({ loading: true, message: 'Sending verification email...' });
+    try {
+      const res = await fetch(`${API_BASE}/auth/resend-verification`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: emailToSend })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setResendStatus({ loading: false, type: 'success', message: data.message || `Verification email sent to ${emailToSend}!` });
+      } else {
+        setResendStatus({ loading: false, type: 'error', message: data.detail || 'Failed to resend verification email.' });
+      }
+    } catch {
+      setResendStatus({ loading: false, type: 'error', message: 'Error communicating with server.' });
+    }
+  };
 
   // When switching to admin tab, fetch data
   useEffect(() => {
@@ -240,6 +311,8 @@ export default function App() {
     e.preventDefault();
     setAuthError('');
     setAuthLoading(true);
+    setRegisteredEmailPending(null);
+    setResendStatus(null);
     try {
       const res = await fetch(`${API_BASE}/auth/register`, {
         method: 'POST',
@@ -248,13 +321,21 @@ export default function App() {
       });
       const data = await res.json();
       if (res.ok) {
-        localStorage.setItem('upsc_token', data.token);
-        localStorage.setItem('upsc_user', JSON.stringify(data.user));
-        setToken(data.token);
-        setUser(data.user);
-        setRequestEmail(data.user.email);
-        fetchUserProfile(data.token);
-        setActiveTab('subscription');
+        if (data.requires_verification) {
+          setRegisteredEmailPending(authEmail);
+          setVerificationBanner({
+            type: 'info',
+            message: `✉️ Verification email sent to ${authEmail}! Please click the link in your email to activate your account.`
+          });
+        } else {
+          localStorage.setItem('upsc_token', data.token);
+          localStorage.setItem('upsc_user', JSON.stringify(data.user));
+          setToken(data.token);
+          setUser(data.user);
+          setRequestEmail(data.user.email);
+          fetchUserProfile(data.token);
+          setActiveTab('subscription');
+        }
       } else {
         setAuthError(data.detail || 'Registration failed.');
       }
@@ -521,98 +602,184 @@ export default function App() {
         </nav>
       </header>
 
+      {/* Top Notification Banner (e.g. Email verification status) */}
+      {verificationBanner && (
+        <div 
+          className={`alert-banner alert-${verificationBanner.type === 'error' ? 'error' : 'success'}`}
+          style={{ 
+            marginBottom: '1.5rem', 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center',
+            padding: '1rem 1.25rem',
+            borderRadius: '10px'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <span style={{ fontSize: '1.25rem' }}>{verificationBanner.type === 'error' ? '⚠️' : '🎉'}</span>
+            <span>{verificationBanner.message}</span>
+          </div>
+          <button 
+            onClick={() => setVerificationBanner(null)} 
+            style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.25rem', color: 'inherit', lineHeight: 1 }}
+          >
+            ×
+          </button>
+        </div>
+      )}
+
       {/* VIEW 1: AUTHENTICATION (Login / Register) */}
       {activeTab === 'auth' && !user && (
         <div className="auth-wrapper">
           <div className="auth-card">
-            <div className="auth-tabs">
-              <button
-                className={`auth-tab ${authMode === 'login' ? 'active' : ''}`}
-                onClick={() => { setAuthMode('login'); setAuthError(''); }}
-              >
-                Sign In
-              </button>
-              <button
-                className={`auth-tab ${authMode === 'register' ? 'active' : ''}`}
-                onClick={() => { setAuthMode('register'); setAuthError(''); }}
-              >
-                Create Account
-              </button>
-            </div>
+            {registeredEmailPending ? (
+              <div style={{ textAlign: 'center', padding: '1rem 0' }}>
+                <div style={{ fontSize: '3.5rem', marginBottom: '0.75rem' }}>✉️</div>
+                <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--text-main)' }}>
+                  Verify Your Email
+                </h2>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                  We have sent a verification link to <strong style={{ color: 'var(--primary)' }}>{registeredEmailPending}</strong>. 
+                  Please check your inbox (or spam folder) and click the link to activate your account.
+                </p>
 
-            {authError && (
-              <div className="alert-banner alert-error">
-                {authError}
-              </div>
-            )}
-
-            <form onSubmit={authMode === 'login' ? handleLogin : handleRegister}>
-              {authMode === 'register' && (
-                <div className="form-group">
-                  <label className="form-label">Full Name</label>
-                  <input
-                    type="text"
-                    required
-                    className="form-input"
-                    placeholder="e.g. Priya Sharma"
-                    value={authName}
-                    onChange={(e) => setAuthName(e.target.value)}
-                  />
-                </div>
-              )}
-
-              <div className="form-group">
-                <label className="form-label">Email Address</label>
-                <input
-                  type="email"
-                  required
-                  className="form-input"
-                  placeholder="aspirant@example.com"
-                  value={authEmail}
-                  onChange={(e) => setAuthEmail(e.target.value)}
-                />
-              </div>
-
-              <div className="form-group">
-                <label className="form-label">Password</label>
-                <input
-                  type="password"
-                  required
-                  className="form-input"
-                  placeholder="••••••••"
-                  value={authPassword}
-                  onChange={(e) => setAuthPassword(e.target.value)}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="btn btn-primary"
-                style={{ width: '100%', marginTop: '0.75rem' }}
-                disabled={authLoading}
-              >
-                {authLoading ? (
-                  <>
-                    <span className="spinner"></span> Processing...
-                  </>
-                ) : (
-                  authMode === 'login' ? 'Sign In to Dashboard' : 'Register Account'
+                {resendStatus && (
+                  <div className={`alert-banner alert-${resendStatus.type === 'error' ? 'error' : 'success'}`} style={{ marginBottom: '1rem', textAlign: 'left' }}>
+                    {resendStatus.message}
+                  </div>
                 )}
-              </button>
-            </form>
 
-            <div className="auth-notice">
-              <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Demo Admin Credentials:</div>
-              <div>Email: <code>admin@upscagent.com</code> | Password: <code>admin123</code></div>
-              <button
-                type="button"
-                onClick={fillDemoAdmin}
-                className="btn btn-secondary btn-sm"
-                style={{ marginTop: '0.5rem', width: '100%' }}
-              >
-                Auto-Fill Admin Credentials
-              </button>
-            </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => handleResendVerification(registeredEmailPending)}
+                    disabled={resendStatus?.loading}
+                  >
+                    {resendStatus?.loading ? 'Resending...' : 'Resend Verification Email'}
+                  </button>
+                  <button
+                    className="btn btn-secondary btn-sm"
+                    onClick={() => { setRegisteredEmailPending(null); setAuthMode('login'); }}
+                  >
+                    Back to Sign In
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <>
+                <div className="auth-tabs">
+                  <button
+                    className={`auth-tab ${authMode === 'login' ? 'active' : ''}`}
+                    onClick={() => { setAuthMode('login'); setAuthError(''); setResendStatus(null); }}
+                  >
+                    Sign In
+                  </button>
+                  <button
+                    className={`auth-tab ${authMode === 'register' ? 'active' : ''}`}
+                    onClick={() => { setAuthMode('register'); setAuthError(''); setResendStatus(null); }}
+                  >
+                    Create Account
+                  </button>
+                </div>
+
+                {authError && (
+                  <div className="alert-banner alert-error" style={{ marginBottom: '1rem' }}>
+                    <div>{authError.replace('EMAIL_NOT_VERIFIED: ', '')}</div>
+                    {(authError.includes('EMAIL_NOT_VERIFIED') || authError.toLowerCase().includes('verify your email')) && (
+                      <div style={{ marginTop: '0.75rem' }}>
+                        <button
+                          type="button"
+                          className="btn btn-secondary btn-sm"
+                          style={{ width: '100%' }}
+                          onClick={() => handleResendVerification(authEmail)}
+                          disabled={resendStatus?.loading}
+                        >
+                          {resendStatus?.loading ? 'Sending...' : 'Resend Verification Email'}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {resendStatus && (
+                  <div className={`alert-banner alert-${resendStatus.type === 'error' ? 'error' : 'success'}`} style={{ marginBottom: '1rem' }}>
+                    {resendStatus.message}
+                  </div>
+                )}
+
+                <form onSubmit={authMode === 'login' ? handleLogin : handleRegister}>
+                  {authMode === 'register' && (
+                    <div className="form-group">
+                      <label className="form-label">Full Name</label>
+                      <input
+                        type="text"
+                        required
+                        className="form-input"
+                        placeholder="e.g. Priya Sharma"
+                        value={authName}
+                        onChange={(e) => setAuthName(e.target.value)}
+                      />
+                    </div>
+                  )}
+
+                  <div className="form-group">
+                    <label className="form-label">Email Address</label>
+                    <input
+                      type="email"
+                      required
+                      className="form-input"
+                      placeholder="aspirant@example.com"
+                      value={authEmail}
+                      onChange={(e) => setAuthEmail(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">Password</label>
+                    <input
+                      type="password"
+                      required
+                      className="form-input"
+                      placeholder="••••••••"
+                      value={authPassword}
+                      onChange={(e) => setAuthPassword(e.target.value)}
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    style={{ width: '100%', marginTop: '0.75rem' }}
+                    disabled={authLoading}
+                  >
+                    {authLoading ? (
+                      <>
+                        <span className="spinner"></span> Processing...
+                      </>
+                    ) : (
+                      authMode === 'login' ? 'Sign In to Dashboard' : 'Register Account'
+                    )}
+                  </button>
+                </form>
+
+                <div className="auth-notice">
+                  <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Demo Admin Credentials:</div>
+                  <div>Email: <code>mailagent202@gmail.com</code> | Password: <code>UPSCAdmin2026!</code></div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setAuthEmail('mailagent202@gmail.com');
+                      setAuthPassword('UPSCAdmin2026!');
+                      setAuthMode('login');
+                    }}
+                    className="btn btn-secondary btn-sm"
+                    style={{ marginTop: '0.5rem', width: '100%' }}
+                  >
+                    Auto-Fill Admin Credentials
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}

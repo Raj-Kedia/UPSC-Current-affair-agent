@@ -1,0 +1,89 @@
+name: Automated Deploy to Google Cloud Run
+
+on:
+  push:
+    branches:
+      - main
+
+# Required for Google Cloud Workload Identity Federation (OIDC)
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    name: Build & Deploy to Cloud Run
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js for Dashboard
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: dashboard/package-lock.json
+
+      - name: Build React Dashboard Bundle
+        working-directory: dashboard
+        run: |
+          npm ci
+          npm run build
+
+      - name: Authenticate to Google Cloud (Workload Identity Federation)
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: 'projects/101589719561/locations/global/workloadIdentityPools/github-pool/providers/github-provider'
+          service_account: 'github-actions-deployer@project-779f14c7-956f-4fdd-b95.iam.gserviceaccount.com'
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Deploy Container to Cloud Run
+        run: |
+          gcloud run deploy upsc-digest \
+            --source . \
+            --project project-779f14c7-956f-4fdd-b95 \
+            --region us-central1 \
+            --platform managed \
+            --allow-unauthenticated \
+            --memory 2Gi \
+            --cpu 2 \
+            --timeout 600 \
+            --quiet
+
+      - name: Ensure Sunday Weekly Mailer Scheduler Job
+        run: |
+          SERVICE_URL=$(gcloud run services describe upsc-digest --project project-779f14c7-956f-4fdd-b95 --region us-central1 --format "value(status.url)")
+          CRON_URI="${SERVICE_URL}/api/cron/weekly-dispatch"
+          JOB_NAME="weekly-upsc-digest-mailer"
+          
+          if gcloud scheduler jobs describe "${JOB_NAME}" --project project-779f14c7-956f-4fdd-b95 --location us-central1 > /dev/null 2>&1; then
+            echo "Updating existing Cloud Scheduler job..."
+            gcloud scheduler jobs update http "${JOB_NAME}" \
+              --project project-779f14c7-956f-4fdd-b95 \
+              --location us-central1 \
+              --schedule "0 8 * * 0" \
+              --time-zone "Asia/Kolkata" \
+              --uri "${CRON_URI}" \
+              --http-method POST \
+              --update-headers "Content-Type=application/json,x-cron-secret=upsc-auto-dispatch-key-2026" \
+              --description "Automated weekly UPSC intelligence digest dispatched every Sunday at 8:00 AM IST to active users" \
+              --quiet
+          else
+            echo "Creating Cloud Scheduler job..."
+            gcloud scheduler jobs create http "${JOB_NAME}" \
+              --project project-779f14c7-956f-4fdd-b95 \
+              --location us-central1 \
+              --schedule "0 8 * * 0" \
+              --time-zone "Asia/Kolkata" \
+              --uri "${CRON_URI}" \
+              --http-method POST \
+              --headers "Content-Type=application/json,x-cron-secret=upsc-auto-dispatch-key-2026" \
+              --description "Automated weekly UPSC intelligence digest dispatched every Sunday at 8:00 AM IST to active users" \
+              --quiet
+          fi
+          echo "Deployment and automated Sunday mailer successfully verified at ${SERVICE_URL}!"

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, BackgroundTasks, HTTPException, Header, Query, Depends, status
+from fastapi import FastAPI, BackgroundTasks, HTTPException, Header, Query, Depends, status, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -13,7 +13,7 @@ from apscheduler.triggers.cron import CronTrigger
 from contextlib import asynccontextmanager
 
 from src.graph import run_agent_workflow
-from src.mailer import send_email, build_newsletter_html
+from src.mailer import send_email, build_newsletter_html, send_verification_email
 from src.config import DATA_DIR, logger, validate_config, BASE_DIR
 from src.db import (
     init_db,
@@ -27,7 +27,9 @@ from src.db import (
     update_subscription_status,
     get_active_subscriber_emails,
     get_overview_stats,
-    update_user_credentials
+    update_user_credentials,
+    verify_user_token,
+    resend_verification_token
 )
 
 # Automated cron secret (optional security key from environment or default)
@@ -184,6 +186,12 @@ class ChangeCredentialsRequest(BaseModel):
     email: Optional[str] = None
     password: Optional[str] = None
 
+class ResendVerificationRequest(BaseModel):
+    email: str
+
+class VerifyEmailRequest(BaseModel):
+    token: str
+
 # ----------------- Auth Helpers -----------------
 
 def get_token_from_header(authorization: Optional[str] = Header(None)) -> Optional[str]:
@@ -258,7 +266,7 @@ def execute_agent_background():
 # ----------------- Auth Endpoints -----------------
 
 @app.post("/api/auth/register")
-def register(req: UserRegisterRequest):
+def register(req: UserRegisterRequest, request: Request, background_tasks: BackgroundTasks):
     if not req.email or not req.password or not req.name:
         raise HTTPException(status_code=400, detail="Name, email, and password are required.")
     
@@ -268,7 +276,74 @@ def register(req: UserRegisterRequest):
     result, error = register_user(req.name, req.email, req.password)
     if error:
         raise HTTPException(status_code=400, detail=error)
-    return result
+        
+    user = result["user"]
+    verification_token = result.get("verification_token")
+    if verification_token:
+        # Detect app base URL
+        host = request.headers.get("x-forwarded-host") or request.headers.get("host")
+        proto = request.headers.get("x-forwarded-proto", "https" if "run.app" in (host or "") else "http")
+        base_url = f"{proto}://{host}" if host else "https://upsc-digest-me3vk4muia-uc.a.run.app"
+        
+        background_tasks.add_task(
+            send_verification_email,
+            recipient_email=user["email"],
+            recipient_name=user["name"],
+            verification_token=verification_token,
+            app_base_url=base_url
+        )
+        
+    return {
+        "message": "Account created! A verification email has been sent to your email address. Please click the link in your email to verify your account.",
+        "user": user,
+        "requires_verification": bool(verification_token)
+    }
+
+@app.get("/api/auth/verify")
+@app.post("/api/auth/verify")
+def verify_email(token: Optional[str] = None, req: Optional[VerifyEmailRequest] = None):
+    ver_token = token
+    if not ver_token and req and req.token:
+        ver_token = req.token
+        
+    if not ver_token:
+        raise HTTPException(status_code=400, detail="Verification token is required.")
+        
+    result, error = verify_user_token(ver_token)
+    if error:
+        raise HTTPException(status_code=400, detail=error)
+        
+    return {
+        "message": "Email verified successfully! You are now logged in.",
+        "user": result["user"],
+        "token": result["token"]
+    }
+
+@app.post("/api/auth/resend-verification")
+def resend_verification(req: ResendVerificationRequest, request: Request, background_tasks: BackgroundTasks):
+    if not req.email:
+        raise HTTPException(status_code=400, detail="Email is required.")
+        
+    result, error = resend_verification_token(req.email)
+    if error:
+        raise HTTPException(status_code=400, detail=error)
+        
+    user = result["user"]
+    verification_token = result.get("verification_token")
+    if verification_token:
+        host = request.headers.get("x-forwarded-host") or request.headers.get("host")
+        proto = request.headers.get("x-forwarded-proto", "https" if "run.app" in (host or "") else "http")
+        base_url = f"{proto}://{host}" if host else "https://upsc-digest-me3vk4muia-uc.a.run.app"
+        
+        background_tasks.add_task(
+            send_verification_email,
+            recipient_email=user["email"],
+            recipient_name=user["name"],
+            verification_token=verification_token,
+            app_base_url=base_url
+        )
+        
+    return {"message": f"Verification email has been sent to {req.email}. Please check your inbox!"}
 
 @app.post("/api/auth/login")
 def login(req: UserLoginRequest):
@@ -277,7 +352,8 @@ def login(req: UserLoginRequest):
         
     result, error = authenticate_user(req.email, req.password)
     if error:
-        raise HTTPException(status_code=401, detail=error)
+        status_code = 403 if "EMAIL_NOT_VERIFIED" in error else 401
+        raise HTTPException(status_code=status_code, detail=error)
     return result
 
 @app.post("/api/auth/logout")

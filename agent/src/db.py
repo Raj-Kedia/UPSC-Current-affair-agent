@@ -76,6 +76,20 @@ def init_db():
     )
     """)
 
+    # Ensure verification columns exist in users table
+    try:
+        cursor.execute("ALTER TABLE users ADD COLUMN is_verified INTEGER DEFAULT 0")
+    except Exception:
+        pass
+    try:
+        cursor.execute("ALTER TABLE users ADD COLUMN verification_token TEXT")
+    except Exception:
+        pass
+    try:
+        cursor.execute("ALTER TABLE users ADD COLUMN token_created_at TIMESTAMP")
+    except Exception:
+        pass
+
     conn.commit()
 
     # Admin credentials configuration from environment variables or defaults
@@ -90,22 +104,25 @@ def init_db():
         pwd_hash, salt = hash_password(env_admin_pass)
         try:
             cursor.execute(
-                "INSERT INTO users (name, email, password_hash, salt, role) VALUES (?, ?, ?, ?, ?)",
+                "INSERT INTO users (name, email, password_hash, salt, role, is_verified) VALUES (?, ?, ?, ?, ?, 1)",
                 (env_admin_name, env_admin_email, pwd_hash, salt, "admin")
             )
             conn.commit()
             logger.info(f"Default admin initialized: {env_admin_email}")
         except sqlite3.IntegrityError:
             pass
-    elif os.getenv("ADMIN_PASSWORD") or os.getenv("ADMIN_EMAIL"):
-        # Explicit env overrides for admin credentials
-        pwd_hash, salt = hash_password(env_admin_pass)
-        cursor.execute(
-            "UPDATE users SET name = ?, email = ?, password_hash = ?, salt = ? WHERE id = ?",
-            (env_admin_name, env_admin_email, pwd_hash, salt, admin_user["id"])
-        )
+    else:
+        cursor.execute("UPDATE users SET is_verified = 1 WHERE role = 'admin'")
         conn.commit()
-        logger.info(f"Admin credentials synchronized from environment: {env_admin_email}")
+        if os.getenv("ADMIN_PASSWORD") or os.getenv("ADMIN_EMAIL"):
+            # Explicit env overrides for admin credentials
+            pwd_hash, salt = hash_password(env_admin_pass)
+            cursor.execute(
+                "UPDATE users SET name = ?, email = ?, password_hash = ?, salt = ?, is_verified = 1 WHERE id = ?",
+                (env_admin_name, env_admin_email, pwd_hash, salt, admin_user["id"])
+            )
+            conn.commit()
+            logger.info(f"Admin credentials synchronized from environment: {env_admin_email}")
 
     conn.close()
 
@@ -150,34 +167,94 @@ def update_user_credentials(user_id: int, name: str = None, email: str = None, p
         return None, str(e)
 
 def register_user(name: str, email: str, password: str, role: str = 'user'):
-    """Register a new user."""
+    """Register a new user and generate a verification token."""
     conn = get_db_connection()
     cursor = conn.cursor()
     email_clean = email.strip().lower()
     
     # Check if user already exists
-    cursor.execute("SELECT id FROM users WHERE email = ?", (email_clean,))
-    if cursor.fetchone():
+    cursor.execute("SELECT id, is_verified FROM users WHERE email = ?", (email_clean,))
+    existing = cursor.fetchone()
+    if existing:
         conn.close()
-        return None, "An account with this email already exists."
+        if existing["is_verified"]:
+            return None, "An account with this email already exists."
+        else:
+            return None, "An account with this email already exists but is not verified yet. Please check your inbox or request a new verification link."
 
     pwd_hash, salt = hash_password(password)
+    verification_token = secrets.token_urlsafe(32) if role != 'admin' else None
+    is_verified = 1 if role == 'admin' else 0
+    now_str = datetime.datetime.now().isoformat()
     try:
         cursor.execute(
-            "INSERT INTO users (name, email, password_hash, salt, role) VALUES (?, ?, ?, ?, ?)",
-            (name.strip(), email_clean, pwd_hash, salt, role)
+            """INSERT INTO users 
+               (name, email, password_hash, salt, role, is_verified, verification_token, token_created_at) 
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+            (name.strip(), email_clean, pwd_hash, salt, role, is_verified, verification_token, now_str)
         )
         user_id = cursor.lastrowid
         conn.commit()
         
-        # Create session
-        token = create_session(user_id)
         user = get_user_by_id(user_id)
         conn.close()
-        return {"user": user, "token": token}, None
+        return {
+            "user": user,
+            "verification_token": verification_token,
+            "is_verified": bool(is_verified)
+        }, None
     except Exception as e:
         conn.close()
         return None, str(e)
+
+def verify_user_token(token: str):
+    """Verify user email with token, mark user verified, and create an active session."""
+    if not token or not token.strip():
+        return None, "Invalid verification token."
+        
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM users WHERE verification_token = ?", (token.strip(),))
+    row = cursor.fetchone()
+    
+    if not row:
+        conn.close()
+        return None, "Invalid or expired verification link."
+        
+    user_dict = dict(row)
+    user_id = user_dict["id"]
+    cursor.execute("UPDATE users SET is_verified = 1, verification_token = NULL WHERE id = ?", (user_id,))
+    conn.commit()
+    
+    session_token = create_session(user_id)
+    safe_user = get_user_by_id(user_id)
+    conn.close()
+    return {"user": safe_user, "token": session_token}, None
+
+def resend_verification_token(email: str):
+    """Generate a new verification token for an unverified user."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    email_clean = email.strip().lower()
+    cursor.execute("SELECT * FROM users WHERE email = ?", (email_clean,))
+    row = cursor.fetchone()
+    
+    if not row:
+        conn.close()
+        return None, "No account found with this email."
+        
+    user_dict = dict(row)
+    if user_dict.get("is_verified", 0):
+        conn.close()
+        return None, "This account is already verified. You can log in directly."
+        
+    new_token = secrets.token_urlsafe(32)
+    now_str = datetime.datetime.now().isoformat()
+    cursor.execute("UPDATE users SET verification_token = ?, token_created_at = ? WHERE id = ?", (new_token, now_str, user_dict["id"]))
+    conn.commit()
+    safe_user = get_user_by_id(user_dict["id"])
+    conn.close()
+    return {"user": safe_user, "verification_token": new_token}, None
 
 def authenticate_user(email: str, password: str):
     """Authenticate user credentials and return user info with session token."""
@@ -196,12 +273,17 @@ def authenticate_user(email: str, password: str):
     if not verify_password(password, user_dict['password_hash'], user_dict['salt']):
         return None, "Invalid email or password."
         
+    # Block unverified regular users
+    if user_dict['role'] != 'admin' and not user_dict.get('is_verified', 0):
+        return None, "EMAIL_NOT_VERIFIED: Please verify your email before logging in. Check your inbox for the verification link."
+
     token = create_session(user_dict['id'])
     safe_user = {
         "id": user_dict['id'],
         "name": user_dict['name'],
         "email": user_dict['email'],
         "role": user_dict['role'],
+        "is_verified": user_dict.get('is_verified', 1),
         "created_at": user_dict['created_at']
     }
     return {"user": safe_user, "token": token}, None
@@ -228,7 +310,7 @@ def get_user_by_token(token: str):
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute("""
-        SELECT u.id, u.name, u.email, u.role, u.created_at 
+        SELECT u.id, u.name, u.email, u.role, u.is_verified, u.created_at 
         FROM sessions s
         JOIN users u ON s.user_id = u.id
         WHERE s.token = ?
@@ -243,11 +325,12 @@ def get_user_by_id(user_id: int):
     """Fetch safe user dict by ID."""
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT id, name, email, role, created_at FROM users WHERE id = ?", (user_id,))
+    cursor.execute("SELECT id, name, email, role, is_verified, created_at FROM users WHERE id = ?", (user_id,))
     row = cursor.fetchone()
     conn.close()
     if row:
         return dict(row)
+    return None
     return None
 
 def delete_session(token: str):
