@@ -78,24 +78,76 @@ def init_db():
 
     conn.commit()
 
-    # Ensure default Admin exists
-    cursor.execute("SELECT id FROM users WHERE role = 'admin'")
+    # Admin credentials configuration from environment variables or defaults
+    env_admin_email = os.getenv("ADMIN_EMAIL", "admin@upscagent.com").strip().lower()
+    env_admin_pass = os.getenv("ADMIN_PASSWORD", "admin123")
+    env_admin_name = os.getenv("ADMIN_NAME", "System Administrator").strip()
+
+    # Ensure Admin exists or update existing admin if configured via environment
+    cursor.execute("SELECT id, email FROM users WHERE role = 'admin' LIMIT 1")
     admin_user = cursor.fetchone()
     if not admin_user:
-        admin_email = "admin@upscagent.com"
-        admin_pass = "admin123"
-        pwd_hash, salt = hash_password(admin_pass)
+        pwd_hash, salt = hash_password(env_admin_pass)
         try:
             cursor.execute(
                 "INSERT INTO users (name, email, password_hash, salt, role) VALUES (?, ?, ?, ?, ?)",
-                ("System Administrator", admin_email, pwd_hash, salt, "admin")
+                (env_admin_name, env_admin_email, pwd_hash, salt, "admin")
             )
             conn.commit()
-            logger.info(f"Default admin initialized: {admin_email}")
+            logger.info(f"Default admin initialized: {env_admin_email}")
         except sqlite3.IntegrityError:
             pass
+    elif os.getenv("ADMIN_PASSWORD") or os.getenv("ADMIN_EMAIL"):
+        # Explicit env overrides for admin credentials
+        pwd_hash, salt = hash_password(env_admin_pass)
+        cursor.execute(
+            "UPDATE users SET name = ?, email = ?, password_hash = ?, salt = ? WHERE id = ?",
+            (env_admin_name, env_admin_email, pwd_hash, salt, admin_user["id"])
+        )
+        conn.commit()
+        logger.info(f"Admin credentials synchronized from environment: {env_admin_email}")
 
     conn.close()
+
+def update_user_credentials(user_id: int, name: str = None, email: str = None, password: str = None):
+    """Update name, email (username), or password for a specific user."""
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
+    user_row = cursor.fetchone()
+    if not user_row:
+        conn.close()
+        return None, "User not found."
+        
+    current = dict(user_row)
+    new_name = name.strip() if name and name.strip() else current["name"]
+    new_email = email.strip().lower() if email and email.strip() else current["email"]
+    
+    # If email changed, check uniqueness
+    if new_email != current["email"]:
+        cursor.execute("SELECT id FROM users WHERE email = ? AND id != ?", (new_email, user_id))
+        if cursor.fetchone():
+            conn.close()
+            return None, "An account with this email address already exists."
+
+    if password and len(password.strip()) >= 6:
+        pwd_hash, salt = hash_password(password.strip())
+    else:
+        pwd_hash, salt = current["password_hash"], current["salt"]
+
+    try:
+        cursor.execute(
+            "UPDATE users SET name = ?, email = ?, password_hash = ?, salt = ? WHERE id = ?",
+            (new_name, new_email, pwd_hash, salt, user_id)
+        )
+        conn.commit()
+        updated_user = get_user_by_id(user_id)
+        conn.close()
+        return updated_user, None
+    except Exception as e:
+        conn.close()
+        return None, str(e)
 
 def register_user(name: str, email: str, password: str, role: str = 'user'):
     """Register a new user."""

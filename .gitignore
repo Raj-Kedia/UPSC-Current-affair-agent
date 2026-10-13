@@ -6,6 +6,9 @@
 # Secrets & Environment Variables (NEVER commit these)
 # -----------------------------------------------------------------------------
 .env
+.env.example
+*.env.example
+agent/.env.example
 .env.local
 .env.*.local
 env.yaml

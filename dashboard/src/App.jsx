@@ -54,6 +54,14 @@ export default function App() {
   // Agent status state
   const [agentStatus, setAgentStatus] = useState({ is_running: false, status_message: 'Idle' });
 
+  // Admin credentials management state
+  const [adminNameInput, setAdminNameInput] = useState('');
+  const [adminEmailInput, setAdminEmailInput] = useState('');
+  const [adminPasswordInput, setAdminPasswordInput] = useState('');
+  const [updatingCreds, setUpdatingCreds] = useState(false);
+  const [credsMessage, setCredsMessage] = useState(null);
+  const [showCredsForm, setShowCredsForm] = useState(false);
+
   // Helper headers for API requests
   const getAuthHeaders = () => {
     return {
@@ -160,6 +168,43 @@ export default function App() {
       fetchAdminData();
     }
   }, [activeTab]);
+
+  useEffect(() => {
+    if (user?.role === 'admin') {
+      setAdminNameInput(user.name || '');
+      setAdminEmailInput(user.email || '');
+    }
+  }, [user]);
+
+  const handleUpdateAdminCreds = async (e) => {
+    e.preventDefault();
+    setUpdatingCreds(true);
+    setCredsMessage(null);
+    try {
+      const res = await fetch(`${API_BASE}/admin/change-credentials`, {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({
+          name: adminNameInput,
+          email: adminEmailInput,
+          password: adminPasswordInput || undefined
+        })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setUser(data.user);
+        localStorage.setItem('upsc_user', JSON.stringify(data.user));
+        setAdminPasswordInput('');
+        setCredsMessage({ type: 'success', text: data.message });
+      } else {
+        setCredsMessage({ type: 'error', text: data.detail || 'Failed to update credentials.' });
+      }
+    } catch {
+      setCredsMessage({ type: 'error', text: 'Error connecting to API.' });
+    } finally {
+      setUpdatingCreds(false);
+    }
+  };
 
   // Authentication Handlers
   const handleLogin = async (e) => {
@@ -946,6 +991,13 @@ export default function App() {
             {/* Quick Actions */}
             <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
               <button
+                className={`btn btn-sm ${showCredsForm ? 'btn-primary' : 'btn-secondary'}`}
+                onClick={() => setShowCredsForm(!showCredsForm)}
+              >
+                ⚙️ Admin Credentials
+              </button>
+
+              <button
                 className="btn btn-secondary btn-sm"
                 onClick={handleRunAgent}
                 disabled={agentStatus.is_running}
@@ -974,6 +1026,80 @@ export default function App() {
               </button>
             </div>
           </div>
+
+          {/* Admin Credentials & Security Form */}
+          {showCredsForm && (
+            <div className="card" style={{ marginBottom: '1.5rem', borderColor: 'var(--border-focus)' }}>
+              <div className="card-header">
+                <div>
+                  <h3 className="card-title">Change Admin Username & Password</h3>
+                  <p className="card-description">
+                    Update the administrator name, login email (username), and password.
+                  </p>
+                </div>
+              </div>
+
+              {credsMessage && (
+                <div className={`alert-banner ${credsMessage.type === 'success' ? 'alert-success' : 'alert-error'}`}>
+                  {credsMessage.text}
+                </div>
+              )}
+
+              <form onSubmit={handleUpdateAdminCreds} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', alignItems: 'end' }}>
+                <div className="form-group" style={{ margin: 0 }}>
+                  <label className="form-label">Admin Name</label>
+                  <input
+                    type="text"
+                    required
+                    className="form-input"
+                    value={adminNameInput}
+                    onChange={(e) => setAdminNameInput(e.target.value)}
+                  />
+                </div>
+
+                <div className="form-group" style={{ margin: 0 }}>
+                  <label className="form-label">Admin Email (Username)</label>
+                  <input
+                    type="email"
+                    required
+                    className="form-input"
+                    value={adminEmailInput}
+                    onChange={(e) => setAdminEmailInput(e.target.value)}
+                  />
+                </div>
+
+                <div className="form-group" style={{ margin: 0 }}>
+                  <label className="form-label">New Password (leave blank to keep)</label>
+                  <input
+                    type="password"
+                    className="form-input"
+                    placeholder="Min 6 characters"
+                    value={adminPasswordInput}
+                    onChange={(e) => setAdminPasswordInput(e.target.value)}
+                  />
+                </div>
+
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-sm"
+                    style={{ height: '38px', flex: 1 }}
+                    disabled={updatingCreds}
+                  >
+                    {updatingCreds ? 'Saving...' : 'Save Credentials'}
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-secondary btn-sm"
+                    style={{ height: '38px' }}
+                    onClick={() => setShowCredsForm(false)}
+                  >
+                    Close
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
 
           {/* KPI Summary Cards */}
           <div className="kpi-grid">

@@ -7,5 +7,7 @@ agent/agent.log
 agent/agent_runs.log
 dashboard/node_modules
 env.yaml
+.env
+.env.*
 *.log
 *.tmp

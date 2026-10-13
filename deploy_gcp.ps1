@@ -60,6 +60,9 @@ gcloud services enable run.googleapis.com cloudbuild.googleapis.com cloudschedul
 # 4. Deploy unified service (FastAPI + React Dashboard) to Cloud Run
 Write-Host "Submitting build and deploying to Cloud Run (this builds the container in GCP)..." -ForegroundColor Yellow
 
+$adminEmail = if ($envVars["ADMIN_EMAIL"]) { $envVars["ADMIN_EMAIL"] } else { "admin@upscagent.com" }
+$adminPass  = if ($envVars["ADMIN_PASSWORD"]) { $envVars["ADMIN_PASSWORD"] } else { "admin123" }
+
 # Generate env.yaml for gcloud deploy (avoids comma-delimiter escaping issues)
 $envYamlPath = Join-Path $PSScriptRoot "env.yaml"
 $yamlContent = @"
@@ -71,6 +74,8 @@ SMTP_USER: "$smtpUser"
 SMTP_PASSWORD: "$smtpPass"
 RECEIVER_EMAIL: "$receiverEmail"
 CRON_SECRET: "$CronSecret"
+ADMIN_EMAIL: "$adminEmail"
+ADMIN_PASSWORD: "$adminPass"
 "@
 Set-Content -Path $envYamlPath -Value $yamlContent -Encoding UTF8
 

@@ -26,7 +26,8 @@ from src.db import (
     get_all_subscriptions,
     update_subscription_status,
     get_active_subscriber_emails,
-    get_overview_stats
+    get_overview_stats,
+    update_user_credentials
 )
 
 # Automated cron secret (optional security key from environment or default)
@@ -177,6 +178,11 @@ class EmailDispatch(BaseModel):
     subject: Optional[str] = None
     html_content: Optional[str] = None
     recipients: Optional[List[str]] = None
+
+class ChangeCredentialsRequest(BaseModel):
+    name: Optional[str] = None
+    email: Optional[str] = None
+    password: Optional[str] = None
 
 # ----------------- Auth Helpers -----------------
 
@@ -450,6 +456,29 @@ def dispatch_weekly_newsletter(req: EmailDispatch = None, admin_user: dict = Dep
         }
     else:
         raise HTTPException(status_code=500, detail="Failed to dispatch weekly email. Check SMTP credentials in .env and agent.log.")
+
+@app.post("/api/admin/change-credentials")
+def change_admin_credentials(
+    req: ChangeCredentialsRequest,
+    admin_user: dict = Depends(require_admin)
+):
+    """Change the admin name, username/email, and/or password."""
+    if req.password and len(req.password.strip()) < 6:
+        raise HTTPException(status_code=400, detail="New password must be at least 6 characters.")
+        
+    updated, err = update_user_credentials(
+        admin_user["id"],
+        name=req.name,
+        email=req.email,
+        password=req.password
+    )
+    if err:
+        raise HTTPException(status_code=400, detail=err)
+        
+    return {
+        "message": f"Admin credentials successfully updated! Username/email is now '{updated['email']}'.",
+        "user": updated
+    }
 
 # ----------------- Automated Cloud Scheduler / Cron Endpoints -----------------
 
